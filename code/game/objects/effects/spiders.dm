@@ -66,6 +66,9 @@
 		return prob(30)
 	return 1
 
+/obj/effect/spider/stickyweb/chtmant
+	silk_baring = FALSE
+
 /obj/effect/spider/eggcluster
 	name = "egg cluster"
 	desc = "They seem to pulse slightly with an inner life"

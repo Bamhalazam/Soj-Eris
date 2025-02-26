@@ -557,3 +557,48 @@
 /obj/item/stack/medical/advanced/ointment/nt/update_icon()
 	icon_state = "[initial(icon_state)][amount]"
 	..()
+
+
+//Ichors - Cht'mant
+
+/obj/item/stack/ichor/purging_ichor
+	name = "purging ichor"
+	singular_name = "Dose"
+	desc = "A thin glob of green fluid used for purging toxins from the body."
+	icon = 'icons/obj/stack/items.dmi'
+	icon_state = "purging_ichor"
+	matter = list(MATERIAL_BIOMATTER = 2)
+	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
+	amount = 5
+	w_class = ITEM_SIZE_SMALL //just so you can place same places that a brute pack would be
+	price_tag = 0
+
+/obj/item/stack/medical/bruise_pack/advanced/mending_ichor
+	name = "mending ichor"
+	singular_name = "mending ichor"
+	desc = "An ichor that can be used to mend physical trauma."
+	icon_state = "mending_ichor"
+	automatic_charge_overlays = FALSE
+	consumable = TRUE // Will the stack disappear entirely once the amount is used up?
+	matter = list(MATERIAL_BIOMATTER = 2.5)
+	natural_remedy = TRUE
+	fancy_icon = FALSE
+	perk_required = FALSE
+	needed_perk = null
+	bio_requirement = 5
+	stacktype_alt = null
+
+/obj/item/stack/medical/ointment/advanced/regenerative_ichor
+	name = "regenerative ichor"
+	singular_name = "regenerative ichor"
+	desc = "An ichor that regenerates dead cells and fights off bacterial infection."
+	icon_state = "regenerative_ichor"
+	automatic_charge_overlays = FALSE
+	consumable = TRUE	// Will the stack disappear entirely once the amount is used up?
+	matter = list(MATERIAL_BIOMATTER = 2.5)
+	natural_remedy = TRUE
+	fancy_icon = FALSE
+	perk_required = FALSE
+	needed_perk = null
+	bio_requirement = 5
+	stacktype_alt = null

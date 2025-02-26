@@ -10,7 +10,7 @@
 	icon_state = "reject_reality"
 	active = FALSE
 	passivePerk = FALSE
-	var/anti_cheat= FALSE
+	anti_cheat = FALSE
 
 /datum/perk/forceful_rejection/remove()
 	holder.stats.changeStat(STAT_VIV, -15)

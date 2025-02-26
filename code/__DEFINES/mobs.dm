@@ -222,3 +222,7 @@
 #define CAN_OPERATE_ALL 1 //All possible surgery types are available
 #define CAN_OPERATE_STANDING -1 //Only limited surgery types are available (gouging out shrapnel, for instance)
 
+//Psionics & NG definitions
+
+#define BP_PSION "psionic organ"
+#define BP_NANOGATE "nanogate"

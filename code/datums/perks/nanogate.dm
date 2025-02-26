@@ -72,7 +72,7 @@
 	passivePerk = FALSE
 	var/chem_id = "nanites"
 	var/chem_amount = 15
-	var/anti_cheat = FALSE //Used to prevent multy stacking clicking
+	anti_cheat = FALSE //Used to prevent multy stacking clicking
 
 /datum/perk/nanite_power/nanite_chem/activate()
 	..()
@@ -129,7 +129,7 @@
 	active = FALSE
 	passivePerk = FALSE
 	var/cooldown = 30 MINUTES
-	var/anti_cheat = FALSE //No more spaming...
+	anti_cheat = FALSE //No more spaming...
 
 /datum/perk/nanite_power/nanite_ammo/activate()
 	if(world.time < cooldown_time)
@@ -143,44 +143,11 @@
 
 				//illegal bullets go BRRRT!!!
 	var/list/blacklisted_types = list(	/obj/item/ammo_magazine/ammobox,
-						/obj/item/ammo_magazine/ammobox/pistol_35/laser,
-						/obj/item/ammo_magazine/ammobox/pistol_35/biomatter,
-						/obj/item/ammo_magazine/ammobox/pistol_35/scrap,
-						/obj/item/ammo_magazine/ammobox/pistol_35/hv,
-						/obj/item/ammo_magazine/ammobox/pistol_35/large/hv,
-						/obj/item/ammo_magazine/ammobox/magnum_40/laser,
-						/obj/item/ammo_magazine/ammobox/magnum_40/biomatter,
-						/obj/item/ammo_magazine/ammobox/magnum_40/scrap,
-						/obj/item/ammo_magazine/ammobox/magnum_40/hv,
-						/obj/item/ammo_magazine/ammobox/magnum_40/large/hv,
-						/obj/item/ammo_magazine/ammobox/magnum_40/rubber/pepperball,
-						/obj/item/ammo_magazine/ammobox/light_rifle_257_small/laser,
-						/obj/item/ammo_magazine/ammobox/light_rifle_257_small/hv,
-						/obj/item/ammo_magazine/ammobox/light_rifle_257/scrap,
-						/obj/item/ammo_magazine/ammobox/light_rifle_257/highvelocity,
-						/obj/item/ammo_magazine/ammobox/rifle_75_small/laser,
-						/obj/item/ammo_magazine/ammobox/rifle_75/hv,
-						/obj/item/ammo_magazine/ammobox/rifle_75_small/hv,
-						/obj/item/ammo_magazine/ammobox/rifle_75_small/scrap,
-						/obj/item/ammo_magazine/ammobox/laser_223/box,
-						//obj/item/ammo_magazine/ammobox/laser_223/box/ap,
-						//obj/item/ammo_magazine/ammobox/laser_223/box/lethal,
-						/obj/item/ammo_magazine/ammobox/kurtz_50/hv,
-						/obj/item/ammo_magazine/ammobox/kurtz_50/laser,
-						/obj/item/ammo_magazine/ammobox/antim, //Unlike the small box holds 15
-						/obj/item/ammo_magazine/ammobox/antim/scrap,
-						/obj/item/ammo_magazine/ammobox/ball,
-						/obj/item/ammo_magazine/ammobox/heavy_rifle_408_small/laser,
-						/obj/item/ammo_magazine/ammobox/heavy_rifle_408_small/hv,
-						/obj/item/ammo_magazine/ammobox/heavy_rifle_408_small/scrap,
-						/obj/item/ammo_magazine/ammobox/heavy_rifle_408/hv,
-						/obj/item/ammo_magazine/ammobox/shotgun/flashshells, //holds 70 shells, its a map item not meant to be common
-						/obj/item/ammo_magazine/ammobox/shotgun/biomatter,
-						/obj/item/ammo_magazine/ammobox/shotgun/incendiary,
-						/obj/item/ammo_magazine/ammobox/shotgun/scrap_beanbag,
-						/obj/item/ammo_magazine/ammobox/shotgun/scrap_pellet,
-						/obj/item/ammo_magazine/ammobox/shotgun/scrap_slug
-						)
+						/obj/item/ammo_magazine/ammobox/pistol/hv,
+						/obj/item/ammo_magazine/ammobox/magnum/hv,
+						/obj/item/ammo_magazine/ammobox/srifle_small/hv,
+						/obj/item/ammo_magazine/ammobox/clrifle_small/hv,
+						/obj/item/ammo_magazine/ammobox/lrifle_small/hv)
 
 	var/list/ammo_boxes = list()
 	for(var/ammo in subtypesof(/obj/item/ammo_magazine/ammobox))

@@ -113,3 +113,14 @@
 		/obj/item/cell/medium = 1
 	)
 	spawn_blacklisted = TRUE
+
+//opifex turret board
+	/obj/item/circuitboard/artificer_turret/opifex
+	build_name = "opifex turret"
+	build_path = /obj/machinery/porta_turret/artificer/opifex
+	board_type = "machine"
+	origin_tech = list(TECH_COMBAT = 3)
+	req_components = list(
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/device/assembly/prox_sensor = 1,
+	)

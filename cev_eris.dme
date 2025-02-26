@@ -87,6 +87,8 @@
 #include "code\__DEFINES\dcs\flags.dm"
 #include "code\__DEFINES\dcs\helpers.dm"
 #include "code\__DEFINES\dcs\signals.dm"
+#include "code\__DEFINES\dcs\signals_moveloop.dm"
+#include "code\__DEFINES\dcs\signals\signals_nanogate\signals_nanogate_main.dm"
 #include "code\__DEFINES\spawner\_spawner.dm"
 #include "code\__DEFINES\spawner\excelsior.dm"
 #include "code\__DEFINES\spawner\frozen_star.dm"

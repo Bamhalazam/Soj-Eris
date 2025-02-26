@@ -77,8 +77,6 @@
 #define PERK_MASTER_HERBALIST /datum/perk/job/master_herbalist
 #define PERK_SI_SCI /datum/perk/si_sci
 #define PERK_ODD_REROLL /datum/perk/oddity_reroll
-#define PERK_MUSH_FOLLOWER /datum/perk/mushroom_follower
-#define PERK_SLIME_FOLLOWER /datum/perk/slime_follower
 #define PERK_GREENTHUMB /datum/perk/greenthumb
 #define PERK_ADDICT /datum/perk/addict
 #define PERK_GUNSMITH /datum/perk/gunsmith
@@ -145,7 +143,6 @@
 //Ch'mant
 #define PERK_SPIDER_FRIEND /datum/perk/spiderfriend
 #define PERK_SCUTTLEBUG /datum/perk/scuttlebug
-#define PERK_REPAIR_GOO /datum/perk/repair_goo
 #define PERK_ICHOR /datum/perk/ichor
 #define PERK_CHITINARMOR /datum/perk/chitinarmor
 #define PERK_WEBMAKER /datum/perk/webmaker

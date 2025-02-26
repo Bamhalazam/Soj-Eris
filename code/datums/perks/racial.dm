@@ -159,7 +159,7 @@
 	icon_state = "diverseculture"
 	active = FALSE
 	passivePerk = FALSE
-	var/anti_cheat = FALSE
+	anti_cheat = FALSE
 
 /datum/perk/linguist_for_humans/activate()
 	..()
@@ -428,7 +428,7 @@
 	cooldown_time = world.time + 12 HOURS
 	to_chat(usr, SPAN_NOTICE("You discreetly and stealthily slip your smuggled patch kit out from their hiding place, the cloth pouch clattering on the floor."))
 	log_and_message_admins("used their [src] perk.")
-	new /obj/item/storage/firstaid/ifak(usr.loc)
+	new /obj/item/storage/firstaid(usr.loc)
 	spawn(20) holder.stats.removePerk(src.type) // Delete the perk
 	return ..()
 
@@ -514,31 +514,6 @@
 	desc = "While your definitive purpose is not as clearly defined as other castes within the cht'mant hive your constant movement and labors have made you quite used to the hustle and bustle, letting you run faster than most races."
 	icon_state = "scuttlebug"
 
-/datum/perk/repair_goo
-	name = "Produce Repair Goo"
-	desc = "Fixing things is apart of your caste as it is scuttling around keeping yourself busy. As such you can vomit out glue-like goo that functions exceptionally well for tool and general repairs."
-	icon_state = "repairgoo"
-	active = FALSE
-	passivePerk = FALSE
-
-/datum/perk/repair_goo/activate()
-	var/mob/living/carbon/human/user = usr
-	if(!istype(user))
-		return ..()
-	if(world.time < cooldown_time)
-		to_chat(usr, SPAN_NOTICE("Your body hasn't finished recovering, you will need to wait a bit longer."))
-		return FALSE
-	if(usr.nutrition <= 350)
-		to_chat(usr, SPAN_NOTICE("You do not have enough nutrition to produce more goo, find things to eat!"))
-		return FALSE
-	cooldown_time = world.time + 1 HOURS
-	usr.nutrition -= 350
-	user.visible_message("<b><font color='red'>[user] vomits a sticky gray tar onto the floor!</font><b>", "<b><font color='red'>You vomit out your repair goo onto the floor!</font><b>", "<b><font color='red'>You hear a retching noise!</font><b>")
-	log_and_message_admins("used their [src] perk.")
-	playsound(usr.loc, 'sound/effects/blobattack.ogg', 50, 1)
-	new /obj/item/tool/tape_roll/repair_goo(usr.loc)
-	return ..()
-
 ///////////////////////////// Folken Perks
 
 /datum/perk/oddity_reroll
@@ -609,32 +584,6 @@
 
 /datum/perk/mushroom_follower/activate()
 	var/mob/living/carbon/human/user = usr
-	if(!istype(user))
-		return ..()
-	if(used)
-		to_chat(user, SPAN_NOTICE("You've already created your companion, you didn't lose them did you?"))
-		return FALSE
-	used = TRUE
-	to_chat(usr, SPAN_NOTICE("You grow a follower!"))
-	var/mob/living/carbon/superior_animal/fungi/mushroom = new follower_type(user.loc)
-	mushroom.friends += user
-	mushroom.following = user
-	mushroom.last_followed = user
-	..()
-
-/datum/perk/slime_follower
-	name = "Spawn Slime-Mold"
-	desc = "Slime-mold shroomlings are animal-intelligence mycus capable of following simple orders like 'Slime-Mold 'Name' Follow.' and 'Slimd-Mold 'Name' Stop.' who will stay by you when ordered. Slime-molds are made for combat, being \
-	incredibly sturdy and physically strong, able to regenerate even the worst wounds. Unfortunately they suffer from poor eyesight, requiring threats to get close before they notice them."
-	icon_state = "spawnslimemold"
-	active = FALSE
-	passivePerk = FALSE
-	var/used = FALSE // Not deleting after use since the description is useful.
-	var/follower_type = /mob/living/carbon/superior_animal/fungi/slime
-
-/datum/perk/slime_follower/activate()
-	var/mob/living/carbon/human/user = usr
-
 	if(!istype(user))
 		return ..()
 	if(used)

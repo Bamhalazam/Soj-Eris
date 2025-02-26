@@ -174,6 +174,15 @@
 		/obj/item/modular_computer/tablet/moebius/preset
 	)
 
+/obj/item/storage/belt/medical/emt/full
+	rarity_value = 50
+
+/obj/item/storage/belt/medical/emt/full/populate_contents()
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/extinguisher/mini(src)
+
 /obj/item/storage/belt/tactical
 	name = "tactical belt"
 	desc = "Can hold various military and security equipment."
@@ -253,3 +262,52 @@
 /obj/item/storage/belt/holding/New()
 	..()
 	bluespace_entropy(4, get_turf(src))
+
+//Opifexish belts
+
+/obj/item/storage/belt/utility/opifex
+	name = "opifex black tool webbing"
+	desc = "A black webbing made specifically for opifex to prevent any pulling or ruffling of feathers, slightly uncomfortable for anyone else but none can deny its quality. This harness is built specifically for tools, limiting its versatility."
+	icon_state = "webbing_black"
+	item_state = "webbing_black"
+	storage_slots = 12
+
+/obj/item/storage/belt/utility/opifex/full/populate_contents()
+	new /obj/item/tool/screwdriver(src)
+	new /obj/item/tool/wrench(src)
+	new /obj/item/tool/weldingtool(src)
+	new /obj/item/tool/crowbar(src)
+	new /obj/item/tool/wirecutters/pliers(src)
+	new /obj/item/stack/cable_coil/random(src)
+	new /obj/item/tool/multitool(src)
+
+/obj/item/storage/belt/medical/opifex
+	name = "opifex black medical webbing"
+	desc = "A black webbing made specifically for opifex to prevent any pulling or ruffling of feathers, slightly uncomfortable for anyone else but none can deny its quality. This harness is built specifically for medical supplies, limiting its versatility."
+	icon_state = "webbing_black"
+	item_state = "webbing_black"
+	storage_slots = 12
+
+/obj/item/storage/belt/medical/opifex/full/populate_contents()
+	new /obj/item/device/scanner/health(src)
+	new /obj/item/reagent_containers/glass/bottle/stoxin(src)
+	new /obj/item/reagent_containers/syringe/large/hyperzine(src)
+	new /obj/item/reagent_containers/syringe/large/tricordrazine(src)
+	new /obj/item/reagent_containers/syringe/large/inaprovaline(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/bodybag/cryobag(src)
+	new /obj/item/extinguisher/mini(src)
+
+/obj/item/storage/belt/security/tactical/opifex
+	name = "opifex tactical belt"
+	desc = "A black tactical belt made specifically for opifex to prevent any pulling or ruffling of feathers, slightly uncomfortable for anyone else but none can deny its quality. This harness is built specifically for combat, limiting its versatility."
+
+/obj/item/storage/belt/security/tactical/opifex/full/populate_contents()
+	new /obj/item/reagent_containers/spray/pepper(src)
+	new /obj/item/tool/crowbar(src)
+	new /obj/item/device/flash(src)
+	new /obj/item/device/lighting/toggleable/flashlight/heavy(src)
+	new /obj/item/cell/medium/high(src)
+	new /obj/item/cell/medium/high(src)
+	new /obj/item/grenade/smokebomb(src)
+	new /obj/item/grenade/chem_grenade/teargas(src)
