@@ -12,13 +12,12 @@
 
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
-	var/global/list/valid_targets = list(
-		/obj/item/reagent_containers/food/snacks/grown,
-		/obj/item/grown,
-		/obj/machinery/portable_atmospherics/hydroponics,
-		/obj/machinery/beehive,
-		/obj/item/seeds
-	)
+var/global/list/valid_targets = list(
+	/obj/item/reagent_containers/food/snacks/grown,
+	/obj/item/grown,
+	/obj/machinery/portable_atmospherics/hydroponics,
+	/obj/machinery/beehive,
+	/obj/item/seeds)
 
 /obj/item/device/scanner/plant/is_valid_scan_target(atom/O)
 	if(is_type_in_list(O, valid_targets))

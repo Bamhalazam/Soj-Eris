@@ -93,10 +93,10 @@ var/list/channel_to_radio_key = new
 		message = stutter(message)
 		verb = pick("stammers", "stutters")
 		speech_problem_flag = 1
-
+/* - COMMENTED OUT BECAUSE IT DOES NOTHING
 	if(ishuman(src) && prob(75))
 		var/mob/living/carbon/human/H = src
-
+*/
 	returns[1] = message
 	returns[2] = verb
 	returns[3] = speech_problem_flag
@@ -264,8 +264,8 @@ var/list/channel_to_radio_key = new
 			sound_vol *= 0.5 //muffle the sound a bit, so it's like we're actually talking through contact
 		var/falloff = (message_range + round(3 * (chem_effects[CE_SPEECH_VOLUME] ? chem_effects[CE_SPEECH_VOLUME] : 1))) //A wider radius where you're heard, but only quietly. This means you can hear people offscreen.
 		//DO NOT FUCKING CHANGE THIS TO GET_OBJ_OR_MOB_AND_BULLSHIT() -- Hugs and Kisses ~Ccomp
-		var/list/hear = hear(message_range, T)
-		var/list/hear_falloff = hear(falloff, T)
+		//var/list/hear = hear(message_range, T) = COMMENTED OUT BECAUSE IT'S NOT USED - Bam
+		//var/list/hear_falloff = hear(falloff, T)
 
 		for(var/mob/M as anything in getMobsInRangeChunked(T, max(message_range, falloff), FALSE, TRUE) | GLOB.player_ghost_list)
 			if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)

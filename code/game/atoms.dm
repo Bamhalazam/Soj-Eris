@@ -401,11 +401,11 @@ its easier to just keep the beam vertical.
 		user.visible_message("<font size=1>[user.name] looks at [src].</font>", output)
 
 	to_chat(user, show_stat_verbs()) //rewrite to show_stat_verbs(user)?
-
+/* - Soj Edit, we don't have the code for this here - Bam
 	if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb))
 		var/datum/perk/greenthumb/P = user.stats.getPerk(/datum/perk/greenthumb)
 		P.virtual_scanner.afterattack(src, user, get_dist(src, user) <= 1)
-
+*/
 	SEND_SIGNAL_OLD(src, COMSIG_EXAMINE, user)
 
 	return (get_dist(src, user) <= world.view) || isobserver(user)
