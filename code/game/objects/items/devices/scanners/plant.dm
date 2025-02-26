@@ -7,6 +7,9 @@
 	item_state = "analyzer"
 	rarity_value = 50
 
+/obj/item/device/scanner/plant/perk
+	charge_per_use = 0 //It need to be 0 for the Green Thumb perk to work
+
 	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
 
 	var/global/list/valid_targets = list(

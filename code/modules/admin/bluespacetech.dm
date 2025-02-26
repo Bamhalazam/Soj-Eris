@@ -70,11 +70,11 @@
 	//Add the rest of the languages
 	bst.add_language(LANGUAGE_COMMON)
 	bst.add_language(LANGUAGE_CYRILLIC)
-	bst.add_language(LANGUAGE_SERBIAN)
+	bst.add_language(LANGUAGE_CYRILLIC)
 	bst.add_language(LANGUAGE_MONKEY)
 	bst.add_language(LANGUAGE_JIVE)
-	bst.add_language(LANGUAGE_GERMAN)
-	bst.add_language(LANGUAGE_NEOHONGO)
+	bst.add_language(LANGUAGE_EURO)
+	bst.add_language(LANGUAGE_JANA)
 	bst.add_language(LANGUAGE_LATIN)
 	// Robot languages
 	bst.add_language(LANGUAGE_ROBOT)

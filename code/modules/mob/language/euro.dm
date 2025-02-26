@@ -1,14 +1,22 @@
-
-/datum/language/german
+/datum/language/euro
 	name = LANGUAGE_EURO
-	desc = "Language used by the inhabitants of Oberth."
-	colour = "german"
-	key = "g"
+	desc = "Language used by the descendants of Europe, particularly influenced by Germanic derived languages. Typically spoken around core-world colonies of Sol-Fed and among those in government positions."
+	colour = "euro"
+	key = "e"
+	speech_verb = list("enounces")
+	ask_verb = list("inquires")
+	exclaim_verb = list("proclaims")
+	partial_understanding = list(
+		LANGUAGE_ROMANA = 20,
+		LANGUAGE_COMMON = 25,
+		LANGUAGE_KRIOSAN = 75
+	)
 	space_chance = 80
-	shorthand = "GE"
+	has_written_form = TRUE
+	shorthand = "EU"
 	syllables = list("Frau", "Mann", "Waffe", "Schiff", "Bombe", "Explosion", "Grenze", "Strasse", "Halle", "Pistole", "Gewehr", "Uniform", "Kind", "Arzt", \
 					 "und", "ja", "nein", "vielleicht", "ob", "man", "Faust", "Auto", "fliegen", "Asteroid", "Hose", "laufen", "fahren","Raumschiff", \
- 					 "Serbien", "Eisenhammer", "Moebius", "Atmosphaere", "Generator", "Ingenieur", "Religion", "Ratte", "Priester", "Käfer", "Armee", "Regierung", "neu", \
+ 					 "Serbien", "Eisenhammer", "Soteria", "Atmosphaere", "Generator", "Ingenieur", "Religion", "Ratte", "Priester", "Käfer", "Armee", "Regierung", "neu", \
  					 "alt", "verfallen", "Hoffnung", "schauen", "sterben", "elektrisch", "Teufel", "kurieren", "Fleisch", "trinken", "Auftrag", "Hilfe", "Medizin", "zeppelin", \
  					 "verfallen", "Verfall", "National", "Laser", "Strom", "Gruppe", "Verteidigung", "verteidigen", "suche", "Auge", "Hand", "Bein", "Kopf", \
  					 "Flucht", "Wahrheit", "Ritter", "Einfluss", "Einfall", "Muesli", "Wand", "Fenster", "Metall", "Holz", "Glas", "Sand",  \

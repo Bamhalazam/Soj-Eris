@@ -314,7 +314,7 @@ proc/end_grab_onto(mob/living/user, mob/living/target)
 		var/windowResistance = resistance ? resistance : 1
 		var/healthRatio = health/maxHealth
 		// you shall suffer for being negative on toughness , it becomes negative so it cancels the negative toughness
-		var/toughnessDivisor = victimToughness > 0 ? STAT_VALUE_MAXIMUM : -(STAT_VALUE_MAXIMUM - victimToughness)
+		var/toughnessDivisor = victimToughness > 0 ? STAT_VALUE_DEFAULT_MAXIMUM : -(STAT_VALUE_DEFAULT_MAXIMUM - victimToughness)
 		// if you less tougher and less sized than the window itself and its health , you are more likely to suffer more
 		if(victimToughness * M.mob_size / toughnessDivisor < windowResistance * healthRatio)
 			M.adjustHalLoss(5)

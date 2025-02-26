@@ -20,6 +20,8 @@
 	var/list/space_chance = 55        			// Likelihood of getting a space in the random scramble string
 	var/machine_understands = 1 		  		// Whether machines can parse and understand this language
 	var/shorthand = "CO"						// Shorthand that shows up in chat for this language.
+	var/list/partial_understanding				// List of languages that can /somehwat/ understand it, format is: name = chance of understanding a word
+	var/has_written_form = FALSE				// Determines if a language can be written in
 
 	//Random name lists
 	var/name_lists = FALSE
@@ -52,50 +54,6 @@
 
 	return "[trim(full_name)]"
 
-/datum/language/proc/get_random_first_name(gender, name_count=1, syllable_count=4, syllable_divisor=2)
-	//This language has its own name lists
-	if (name_lists)
-		if(gender==FEMALE)
-			return capitalize(pick(first_names_female))
-		else
-			return capitalize(pick(first_names_male))
-
-	if(!syllables || !syllables.len)
-		if(gender==FEMALE)
-			return capitalize(pick(GLOB.first_names_female))
-		else
-			return capitalize(pick(GLOB.first_names_male))
-
-	var/full_name = ""
-	var/new_name = ""
-
-	for(var/i = 0;i<name_count;i++)
-		new_name = ""
-		for(var/x = rand(FLOOR(syllable_count/syllable_divisor, 1),syllable_count);x>0;x--)
-			new_name += pick(syllables)
-		full_name += " [capitalize(lowertext(new_name))]"
-
-	return "[trim(full_name)]"
-
-/datum/language/proc/get_random_last_name(name_count=1, syllable_count=4, syllable_divisor=2)
-	//This language has its own name lists
-	if (name_lists)
-		return capitalize(pick(last_names))
-
-	if(!syllables || !syllables.len)
-		return capitalize(pick(GLOB.last_names))
-
-	var/full_name = ""
-	var/new_name = ""
-
-	for(var/i = 0;i<name_count;i++)
-		new_name = ""
-		for(var/x = rand(FLOOR(syllable_count/syllable_divisor, 1),syllable_count);x>0;x--)
-			new_name += pick(syllables)
-		full_name += "[capitalize(lowertext(new_name))]"
-
-	return "[trim(full_name)]"
-
 //A wrapper for the above that gets a random name and sets it onto the mob
 /datum/language/proc/set_random_name(var/mob/M, name_count=2, syllable_count=4, syllable_divisor=2)
 	var/mob/living/carbon/human/H = null
@@ -111,8 +69,39 @@
 /datum/language
 	var/list/scramble_cache = list()
 
-/datum/language/proc/scramble(var/input)
+/datum/language/proc/scramble(var/input, var/list/known_languages)
 
+	var/understand_chance = 0
+	for(var/datum/language/L in known_languages)
+		if(LAZYACCESS(partial_understanding, L.name))
+			understand_chance += partial_understanding[L.name]
+
+	var/list/words = splittext(input, " ")
+	var/list/scrambled_text = list()
+	var/new_sentence = 0
+	for(var/w in words)
+		var/nword = "[w] "
+		var/input_ending = copytext(w, length(w))
+		var/ends_sentence = findtext(".?!",input_ending)
+		if(!prob(understand_chance))
+			nword = scramble_word(w)
+			if(new_sentence)
+				nword = capitalize(nword)
+				new_sentence = FALSE
+			if(ends_sentence)
+				nword = trim(nword)
+				nword = "[nword][input_ending] "
+
+		if(ends_sentence)
+			new_sentence = TRUE
+
+		scrambled_text += nword
+
+	. = jointext(scrambled_text, null)
+	. = capitalize(.)
+	. = trim(.)
+
+/datum/language/proc/scramble_word(var/input)
 	if(!syllables || !syllables.len)
 		return stars(input)
 
@@ -123,11 +112,11 @@
 		scramble_cache[input] = n
 		return n
 
-	var/input_size = length_char(input)
+	var/input_size = length(input)
 	var/scrambled_text = ""
-	var/capitalize = 1
+	var/capitalize = 0
 
-	while(length_char(scrambled_text) < input_size)
+	while(length(scrambled_text) < input_size)
 		var/next = pick(syllables)
 		if(capitalize)
 			next = capitalize(next)
@@ -139,14 +128,6 @@
 			capitalize = 1
 		else if(chance > 5 && chance <= space_chance)
 			scrambled_text += " "
-
-	scrambled_text = trim(scrambled_text)
-	var/ending = copytext_char(scrambled_text, length(scrambled_text))
-	if(ending == ".")
-		scrambled_text = copytext_char(scrambled_text, 1, -2)
-	var/input_ending = copytext_char(input, -1)
-	if(input_ending in list("!","?","."))
-		scrambled_text += input_ending
 
 	// Add it to cache, cutting old entries if the list is too long
 	scramble_cache[input] = scrambled_text
@@ -200,8 +181,12 @@
 			return pick(exclaim_verb)
 		if("?")
 			return pick(ask_verb)
-
+		if("@")
+			return "reports"
 	return pick(speech_verb)
+
+/datum/language/proc/can_speak_special(var/mob/speaker)
+	return 1
 
 // Language handling.
 /mob/proc/add_language(var/language)
@@ -244,44 +229,14 @@
 	set category = "IC"
 	set src = usr
 
-
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"
 
-	if(issilicon(src))
-		var/mob/living/silicon/silicon = src
-
-		if(silicon.default_language)
-			dat += "Current default language: [silicon.default_language] - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/><br/>"
-
-		for(var/datum/language/L in languages)
-			if(!(L.flags & NONGLOBAL))
-				var/default_str
-				if(L == silicon.default_language)
-					default_str = " - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a>"
-				else
-					default_str = " - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a>"
-
-				var/synth = (L in silicon.speech_synthesizer_langs)
-				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b>[synth ? default_str : null]<br/>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br/>[L.desc]<br/><br/>"
-	else
-		for(var/datum/language/L in languages)
-			if(!(L.flags & NONGLOBAL))
-				dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
+	for(var/datum/language/L in languages)
+		if(!(L.flags & NONGLOBAL))
+			dat += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
 
 	src << browse(dat, "window=checklanguage")
-
-
-
-
-
-
-
-
-
-
-
-
-
+	return
 
 /mob/living/check_languages()
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"

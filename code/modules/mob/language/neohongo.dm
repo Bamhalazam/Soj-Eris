@@ -1,5 +1,5 @@
 /datum/language/neohongo
-	name = LANGUAGE_NEOHONGO
+	name = LANGUAGE_JANA
 	desc = "The language widely used by Frozen Star"
 	colour = "neohongo"
 	key = "j"

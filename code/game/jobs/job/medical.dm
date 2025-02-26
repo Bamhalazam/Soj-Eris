@@ -10,7 +10,7 @@
 	supervisors = "the Moebius Expedition Overseer"
 	selection_color = "#94a87f"
 	req_admin_notify = 1
-	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_SERBIAN = 5)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_CYRILLIC = 5)
 	wage = WAGE_COMMAND
 	outfit_type = /decl/hierarchy/outfit/job/medical/cmo
 
@@ -183,7 +183,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 	supervisors = "the Moebius Biolab Officer"
 	selection_color = "#a8b69a"
 	wage = WAGE_LABOUR_HAZARD
-	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_CYRILLIC = 15)
 
 	outfit_type = /decl/hierarchy/outfit/job/medical/paramedic
 	access = list(

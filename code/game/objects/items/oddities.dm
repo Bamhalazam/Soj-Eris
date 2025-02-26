@@ -4,45 +4,70 @@
 //If rebalancing is needed, keep in mind spawning rate of those items, it might be good idea to change that as well
 //Clockrigger 2019
 
+//This is set of item created to work with Eris stat and perk systems
+//The idea here is simple, you find oddities in random spawners, you use them, and they grant you stats, or even perks.
+//After use, the object is claimed, and cannot be used by someone else
+//If rebalancing is needed, keep in mind spawning rate of those items, it might be good idea to change that as well
+//Clockrigger 2019
+
 /obj/item/oddity
-	name = "Oddity"
+	name = "An Oddity"
 	desc = "Strange item of uncertain origin."
 	icon = 'icons/obj/oddities.dmi'
-	icon_state = "gift3"
-	item_state = "electronic"
+	icon_state = "techno_part3"
+	item_state = "techno_part3"
 	w_class = ITEM_SIZE_SMALL
 
-	//spawn_values
-	spawn_blacklisted = TRUE
-	spawn_tags = SPAWN_TAG_ODDITY
-	rarity_value = 10
-	bad_type = /obj/item/oddity
-
-	price_tag = 0
-
-	//You choose what stat can be increased, and a maximum value that will be added to this stat
-	//The minimum is defined above. The value of change will be decided by random
-	var/random_stats = TRUE
-	var/list/oddity_stats
+//You choose what stat can be increased, and a maximum value that will be added to this stat
+//The minimum is defined above. The value of change will be decided by random
+	var/random_stats = TRUE //Do we randomize the stats at all on spawn?
+	var/list/oddity_stats  //This is are stat field form cog to vig and were we put are value
 	var/sanity_value = 1
-	var/datum/perk/oddity/perk
-	var/prob_perk = 100
+	var/datum/perk/oddity/perk //This is so we can link a perk into the oddity
+	var/prob_perk = 40 //how likely it is to role a perk - if prek isnt present, out of 100
+	var/min_stats = 1 //The lowest amount it can give when randomizing
+	var/kill_stats = FALSE
+
 
 /obj/item/oddity/Initialize()
 	. = ..()
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
+	var/area/my_area = get_area(src.loc)
+	if(!my_area)
+		oddity_rolling()
+		return
+	if(my_area.name == "Deep Maintenance") //Shockingly this is how get area works
+		upgraded_oddity_rolling()
+	else
+		oddity_rolling()
+
+/obj/item/oddity/proc/oddity_rolling()
 	if(!perk && prob(prob_perk))
 		perk = get_oddity_perk()
-
 	if(oddity_stats)
 		if(random_stats)
 			for(var/stat in oddity_stats)
-				oddity_stats[stat] = rand(2, oddity_stats[stat])
-		AddComponent(/datum/component/inspiration, oddity_stats, perk)
+				oddity_stats[stat] = rand(min_stats, oddity_stats[stat])
+		AddComponent(/datum/component/inspiration, oddity_stats, perk, kill_stats)
+
+/obj/item/oddity/proc/upgraded_oddity_rolling()
+	if(!perk && prob(prob_perk+5))
+		perk = get_good_perk()
+	if(oddity_stats)
+		if(random_stats)
+			for(var/stat in oddity_stats)
+				oddity_stats[stat] = round((oddity_stats[stat] = rand(min_stats, oddity_stats[stat]) * 1.5))
+		AddComponent(/datum/component/inspiration, oddity_stats, perk, kill_stats)
 
 /proc/get_oddity_perk()
 	return pick(subtypesof(/datum/perk/oddity))
 
+
+/proc/get_good_perk()
+	return pick(GOOD_ODDITY_PERKS)
+
+/obj/item/oddity/examine(user)
+	..()
 //Oddities are separated into categories depending on their origin. They are meant to be used both in maints and derelicts, so this is important
 //This is done by subtypes, because this way even densiest code monkey will not able to misuse them
 //They are meant to be put in appropriate random spawners

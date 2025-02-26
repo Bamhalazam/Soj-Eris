@@ -25,7 +25,7 @@
 
 /datum/category_item/setup_option/background/origin/oberth/apply(mob/living/carbon/human/character)
   ..()
-  character.add_language(LANGUAGE_GERMAN)
+  character.add_language(LANGUAGE_EURO)
 
 
 /datum/category_item/setup_option/background/origin/predstraza
@@ -48,7 +48,7 @@
 
 /datum/category_item/setup_option/background/origin/predstraza/apply(mob/living/carbon/human/character)
   ..()
-  character.add_language(LANGUAGE_SERBIAN)
+  character.add_language(LANGUAGE_CYRILLIC)
 
 /datum/category_item/setup_option/background/origin/sich_prime
 	name = "Sich Prime"
@@ -107,7 +107,7 @@
 
 /datum/category_item/setup_option/background/origin/shimatengoku/apply(mob/living/carbon/human/character)
   ..()
-  character.add_language(LANGUAGE_NEOHONGO)
+  character.add_language(LANGUAGE_JANA)
 
 
 /datum/category_item/setup_option/background/origin/hmss_destined

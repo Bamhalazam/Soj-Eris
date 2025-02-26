@@ -127,7 +127,7 @@
 		if(stash.stash_location)
 			choices += CHOICE_STASHPAPER
 	// Let's see if an additional language is feasible. If the user has them all already somehow, we aren't gonna choose this.
-	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_SERBIAN, LANGUAGE_GERMAN, LANGUAGE_NEOHONGO, LANGUAGE_LATIN) // Not static, because we're gonna remove languages already known by the user
+	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_CYRILLIC, LANGUAGE_EURO, LANGUAGE_JANA, LANGUAGE_LATIN) // Not static, because we're gonna remove languages already known by the user
 	for(var/l in valid_languages)
 		var/datum/language/L = all_languages[l]
 		if(L in holder.languages)
@@ -227,7 +227,7 @@
 	        to harvest reagents, by examining them. Gathering plants relaxes you and thus restores sanity."
 	icon_state = "greenthumb" // https://game-icons.net/1x1/delapouite/farmer.html
 
-	var/obj/item/device/scanner/plant/virtual_scanner = new
+	// var/obj/item/device/scanner/plant/virtual_scanner = new - UNCOMMENT THIS LATER - DISABLED FOR PORT!
 
 /datum/perk/greenthumb/assign(mob/living/carbon/human/H)
 	..()
@@ -259,7 +259,7 @@
 	icon_state = "codespeak" // https://game-icons.net/1x1/delapouite/police-officer-head.html
 	var/list/codespeak_procs = list(
 		/mob/living/carbon/human/proc/codespeak_help,
-		/mob/living/carbon/human/proc/codespeak_backup,
+
 		/mob/living/carbon/human/proc/codespeak_clear,
 		/mob/living/carbon/human/proc/codespeak_romch,
 		/mob/living/carbon/human/proc/codespeak_bigromch,
@@ -290,8 +290,6 @@
 		/mob/living/carbon/human/proc/codespeak_go_local,
 		/mob/living/carbon/human/proc/codespeak_stop_local,
 		/mob/living/carbon/human/proc/codespeak_idiot_local,
-		/mob/living/carbon/human/proc/codespeak_warcrime_yes_local,
-		/mob/living/carbon/human/proc/codespeak_warcrime_no_local,
 		/mob/living/carbon/human/proc/codespeak_run_local)
 
 /datum/perk/codespeak/assign(mob/living/carbon/human/H)
@@ -309,26 +307,14 @@
 	desc = "You know Serbian Mercenaries' code language, adapted to use in shipboarding scenarios."
 	icon_state = "codespeak_serb" // https://game-icons.net/1x1/delapouite/pocket-radio.html
 	codespeak_procs = list(
-		/mob/living/carbon/human/proc/sm_codespeak_help,
-		/mob/living/carbon/human/proc/sm_codespeak_backup,
-		/mob/living/carbon/human/proc/sm_codespeak_clear,
-		/mob/living/carbon/human/proc/sm_codespeak_dead_merc,
-		/mob/living/carbon/human/proc/sm_codespeak_wounded_merc,
-		/mob/living/carbon/human/proc/sm_codespeak_target,
-		/mob/living/carbon/human/proc/sm_codespeak_status,
-		/mob/living/carbon/human/proc/sm_codespeak_shutup,
-		/mob/living/carbon/human/proc/sm_codespeak_understood,
-		/mob/living/carbon/human/proc/sm_codespeak_yes,
-		/mob/living/carbon/human/proc/sm_codespeak_no,
-		/mob/living/carbon/human/proc/sm_codespeak_what,
-		/mob/living/carbon/human/proc/sm_codespeak_captured,
-		/mob/living/carbon/human/proc/sm_codespeak_escaped,
-		/mob/living/carbon/human/proc/sm_codespeak_understood_local,
-		/mob/living/carbon/human/proc/sm_codespeak_yes_local,
-		/mob/living/carbon/human/proc/sm_codespeak_no_local,
-		/mob/living/carbon/human/proc/sm_codespeak_engage_local,
-		/mob/living/carbon/human/proc/sm_codespeak_hold_local,
-		/mob/living/carbon/human/proc/sm_codespeak_go_local,
-		/mob/living/carbon/human/proc/sm_codespeak_stop_local,
-		/mob/living/carbon/human/proc/sm_codespeak_run_local,
-		/mob/living/carbon/human/proc/sm_codespeak_idiot_local)
+		/mob/living/carbon/human/proc/sm_codespeak_moving_away(),
+		/mob/living/carbon/human/proc/sm_codespeak_dead_serb(),
+		/mob/living/carbon/human/proc/sm_codespeak_wounded_serb(),
+		/mob/living/carbon/human/proc/sm_codespeak_what(),
+		/mob/living/carbon/human/proc/sm_codespeak_busted(),
+		/mob/living/carbon/human/proc/sm_codespeak_jailbreak(),
+		/mob/living/carbon/human/proc/sm_codespeak_engage_local(),
+		/mob/living/carbon/human/proc/sm_codespeak_hold_local(),
+		/mob/living/carbon/human/proc/sm_codespeak_go_local(),
+		/mob/living/carbon/human/proc/sm_codespeak_stop_local(),
+		/mob/living/carbon/human/proc/sm_codespeak_idiot_local())

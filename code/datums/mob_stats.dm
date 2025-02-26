@@ -194,8 +194,8 @@
 			return SM
 
 /datum/stat/proc/changeValue(affect)
-	if(value + affect > STAT_VALUE_MAXIMUM)
-		value = STAT_VALUE_MAXIMUM
+	if(value + affect > STAT_VALUE_DEFAULT_MAXIMUM)
+		value = STAT_VALUE_DEFAULT_MAXIMUM
 	else
 		value = value + affect
 
@@ -213,8 +213,8 @@
 			. += SM.value
 
 /datum/stat/proc/setValue(value)
-	if(value > STAT_VALUE_MAXIMUM)
-		src.value = STAT_VALUE_MAXIMUM
+	if(value > STAT_VALUE_DEFAULT_MAXIMUM)
+		src.value = STAT_VALUE_DEFAULT_MAXIMUM
 	else
 		src.value = value
 

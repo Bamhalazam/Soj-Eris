@@ -28,7 +28,7 @@
 	remove_language(LANGUAGE_ROBOT)
 	remove_language(LANGUAGE_DRONE)
 	add_language(LANGUAGE_BLITZ, 1)
-	add_language(LANGUAGE_GERMAN, 1) // Oberth drone. Give these fellas at least the bare MINIMUM of RP capacity.
+	add_language(LANGUAGE_EURO, 1) // Oberth drone. Give these fellas at least the bare MINIMUM of RP capacity.
 	UnlinkSelf()
 
 /mob/living/silicon/robot/drone/blitzshell/GetIdCard()

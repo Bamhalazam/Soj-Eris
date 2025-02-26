@@ -11,7 +11,7 @@
 	selection_color = "#b39aaf"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
-	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_SERBIAN = 25)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_CYRILLIC = 25)
 
 	outfit_type = /decl/hierarchy/outfit/job/science/rd
 

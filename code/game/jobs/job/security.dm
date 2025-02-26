@@ -11,7 +11,7 @@
 	selection_color = "#97b0be"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
-	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
+	also_known_languages = list(LANGUAGE_JANA = 100)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihc
 
@@ -72,7 +72,7 @@
 	selection_color = "#a7bbc6"
 	department_account_access = TRUE
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
+	also_known_languages = list(LANGUAGE_JANA = 100)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/gunserg
 
@@ -125,7 +125,7 @@
 	supervisors = "the Ironhammer Commander"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
+	also_known_languages = list(LANGUAGE_JANA = 100)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/inspector
 
@@ -183,7 +183,7 @@
 	supervisors = "the Ironhammer Commander, Ironhammer Sergeant"
 	selection_color = "#a7bbc6"
 	wage = WAGE_PROFESSIONAL
-	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
+	also_known_languages = list(LANGUAGE_JANA = 100)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/medspec
 
@@ -237,7 +237,7 @@
 	//alt_titles = list("Ironhammer Junior Operative")
 	selection_color = "#a7bbc6"
 	wage = WAGE_LABOUR_HAZARD
-	also_known_languages = list(LANGUAGE_NEOHONGO = 100)
+	also_known_languages = list(LANGUAGE_JANA = 100)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/ihoper
 

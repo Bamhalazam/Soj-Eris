@@ -16,7 +16,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	wage = WAGE_NONE //The captain doesn't get paid, he's the one who does the paying
 	//The ship account is his, and he's free to draw as much salary as he likes
 
-	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_CYRILLIC = 20)
 
 	perks = list(/datum/perk/sommelier)
 
@@ -83,7 +83,7 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	selection_color = "#ddddff"
 	req_admin_notify = 1
 	wage = WAGE_COMMAND
-	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_CYRILLIC = 15)
 	perks = list(/datum/perk/sommelier)
 	ideal_character_age = 50
 
