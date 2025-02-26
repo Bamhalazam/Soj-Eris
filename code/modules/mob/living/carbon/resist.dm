@@ -199,7 +199,7 @@
 /mob/living/carbon/proc/can_break_cuffs()
 //	if(HULK in mutations)
 //		return 1
-	if(stats.getStat(STAT_ROB) >= STAT_LEVEL_GODLIKE)
+	if(stats.getStat(STAT_ROB) >= STAT_LEVEL_COSMIC )
 		return 1
 
 /mob/living/carbon/proc/break_handcuffs()

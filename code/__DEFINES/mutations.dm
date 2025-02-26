@@ -17,7 +17,6 @@
 
 #define MUTATION_REJECT				/datum/mutation/t3/reject
 #define MUTATION_GREATER_HEALING	/datum/mutation/t3/healing_factor
-#define MUTATION_OBORIN				/datum/mutation/t3/oborin
 #define MUTATION_NIGHT_VISION		/datum/mutation/t3/night_vision
 #define MUTATION_THERMAL_VISION		/datum/mutation/t3/thermal_vision
 #define MUTATION_INNER_FUHRER		/datum/mutation/t3/inner_fuhrer

@@ -1,22 +1,14 @@
-//fate perks, commented out since most effect the sanity system and we don't use that system. -Kaz
-/*
-#define PERK_PAPER_WORM /datum/perk/paper_worm
+
 #define PERK_FREELACER /datum/perk/freelancer
 #define PERK_NIHILIST /datum/perk/nihilist
-#define PERK_MORALIST /datum/perk/moralist
-#define PERK_ALCOHOLIC /datum/perk/alcoholic
-#define PERK_ALCOHOLIC_ACTIVE /datum/perk/alcoholic_active
-#define PERK_DRUG_ADDICT /datum/perk/drug_addict
 #define PERK_NOBLE /datum/perk/noble
 #define PERK_RAT /datum/perk/rat
 #define PERK_REJECTED_GENIUS /datum/perk/rejected_genius
-#define PERK_OBORIN_SYNDROME /datum/perk/oborin_syndrome
-#define PERK_LOWBORN /datum/perk/lowborn
 #define PERK_TERRIBLE_FATE /datum/perk/oddity/terrible_fate
 #define PERK_CHARMING_PERSONALITY /datum/perk/oddity/charming_personality
 #define PERK_HORRIBLE_DEEDS /datum/perk/oddity/horrible_deeds
-#define PERK_ABSOLUTE_GRAB /datum/perk/oddity/absolute_grab <-- This perk here may be implemented later and its code exists but is commented out.
-*/
+#define PERK_ABSOLUTE_GRAB /datum/perk/oddity/absolute_grab
+
 // Name changer perk, meant for ghostspawners
 #define PERK_TRUE_NAME /datum/perk/true_name
 
@@ -24,7 +16,7 @@
 #define PERK_FAST_WALKER /datum/perk/oddity/fast_walker
 #define PERK_GUNSLINGER /datum/perk/oddity/gunslinger
 #define PERK_TERRIBLE_FATE /datum/perk/oddity/terrible_fate
-#define PERK_TOXIC_REVENGER /datum/perk/oddity/toxic_revenger
+// #define PERK_TOXIC_REVENGER /datum/perk/oddity/toxic_revenger - Lead Blood analogue
 #define PERK_BALLS_OF_PLASTEEL /datum/perk/oddity/balls_of_plasteel
 #define PERK_WEAK_MIND /datum/perk/oddity/weak_mind
 #define PERK_HARDEN /datum/perk/oddity/harden
@@ -34,7 +26,7 @@
 #define PERK_FAILING_MIND /datum/perk/oddity/failing_mind
 #define PERK_SHARP_MIND /datum/perk/oddity/sharp_mind
 #define PERK_BLACKBOX_INSIGHT /datum/perk/guild/blackbox_insight
-#define PERK_STRANGTH /datum/perk/oddity/strangth
+#define PERK_STRENGTH /datum/perk/oddity/strength
 #define PERK_MIND_OF_MATTER /datum/perk/oddity/mind_of_matter
 #define PERK_IRON_WILL /datum/perk/oddity/iron_will
 #define PERK_SURVIVOR /datum/perk/oddity/survivor
@@ -86,7 +78,6 @@
 #define PERK_NEAT /datum/perk/neat
 #define PERK_CHEM_CONTRABAND /datum/perk/chem_contraband
 #define PERK_CHEMIST /datum/perk/chemist
-#define PERK_KLUTZ /datum/perk/klutz
 #define PERK_CODESPEAK /datum/perk/codespeak
 #define PERK_INSPIRATION /datum/perk/inspiration
 #define PERK_ACTIVE_INSPIRATION /datum/perk/active_inspiration
@@ -97,6 +88,8 @@
 #define PERK_NO_OBFUSCATION /datum/perk/no_obfuscation //isekai perk?
 #define PERK_BLOOD_LUST /datum/perk/blood_lust
 #define PERK_NATURAL_STYLE /datum/perk/natural_style
+#define PERK_TECHNOMANCY /datum/perk/technomancy
+
 
 #define PERK_REZ_SICKNESS /datum/perk/rezsickness
 #define PERK_REZ_SICKNESS_SEVERE /datum/perk/rezsickness/severe
@@ -220,14 +213,14 @@
 							   PERK_HARDEN, \
 							   PERK_BETTER_TOXINS, \
 							   PERK_SHARP_MIND, \
-							   PERK_STRANGTH, \
+							   PERK_STRENGTH, \
 							   PERK_IRON_WILL, \
 							   PERK_SNACKIVORE, \
 							   PERK_SIDE_LOADING )
 
 //Temporary drug perks
 #define PERK_ULTRASURGEON /datum/perk/drug/ultrasurgeon
-#define PERK_NJOY /datum/perk/njoy
+// #define PERK_NJOY /datum/perk/njoy - Commented out due to missing dependencies - Bam
 
 //Task Perks
 #define PERK_FORCEFUL_REJECTION /datum/perk/forceful_rejection
@@ -244,3 +237,6 @@
 #define PERK_COOLDOWN_EXERTION /datum/perk/cooldown/exertion
 //Anti-art
 #define PERK_ARTIST_NO /datum/perk/cooldown/artist_no
+
+//Antagonist 
+#define PERK_CODESPEAK_SERB /datum/perk/codespeak/serbian

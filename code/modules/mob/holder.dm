@@ -527,6 +527,15 @@ var/list/holder_mob_icon_cache = list()
 	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
 	w_class = ITEM_SIZE_NORMAL
 
+/obj/item/holder/nanobot
+	name = "nanobot"
+	desc = "It's a robot, folded up into an easily carried compact module."
+	w_class = ITEM_SIZE_HUGE // You're not fitting this thing in a backpack
+
+/obj/item/holder/nanobot/attack_self(mob/user)
+	..()
+	contained.attack_hand(user)
+
 /obj/item/holder/borer
 	name = "cortical borer"
 	desc = "A slimy brain slug. Gross."

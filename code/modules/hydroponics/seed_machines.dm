@@ -218,7 +218,7 @@
 		var/stat_multiplier = 1
 		if(usr.stats)
 			// Uses best of BIO and COG
-			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
+			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_COSMIC ), usr.stats.getMult(STAT_COG, STAT_LEVEL_COSMIC ))
 
 		seed.modified += round(rand(30, 70) * stat_multiplier)
 		if(seed.modified >= 100)
@@ -263,7 +263,7 @@
 		var/stat_multiplier = 1
 		if(usr.stats)
 			// Uses best of BIO and COG
-			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
+			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_COSMIC ), usr.stats.getMult(STAT_COG, STAT_LEVEL_COSMIC ))
 
 		seed.modified += round(rand(30, 50) * stat_multiplier)
 		if(!isnull(plant_controller.seeds[seed.seed.name]))

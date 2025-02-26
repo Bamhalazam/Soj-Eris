@@ -183,7 +183,7 @@
 #undef TURRET_NOT_TARGET
 
 
-
+/* -- OPIFEX STUFF COMMENTED OUT WHILE WE PORT PERKS - Bam
 /obj/machinery/porta_turret/artificer/opifex
 	name = "opifex scrap turret"
 	desc = "A fully automated battery powered anti-wildlife turret designed by the opifex. It features a three round burst barrel and isn't as sturdy nor as functional as other turrets. Fires 7.62mm rounds and holds only a measly 30 rounds."
@@ -277,8 +277,9 @@
 	cut_overlays()
 
 	if(!(stat & BROKEN))
-		add_overlay(image("turret_gun"))
+		add_overlay(image("turret_gun_art"))
 
 #undef TURRET_PRIORITY_TARGET
 #undef TURRET_SECONDARY_TARGET
 #undef TURRET_NOT_TARGET
+*/

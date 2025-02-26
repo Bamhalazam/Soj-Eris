@@ -32,8 +32,5 @@
 		if(!shoes)
 			volume -= 60
 			range -= 0.333
-		if(stats.getPerk(PERK_RAT))
-			volume -= 20
-			range -= 0.333
 
 		mob_playsound(T, footsound, volume, 1, range)

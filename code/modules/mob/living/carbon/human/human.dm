@@ -1496,7 +1496,7 @@ var/list/rank_prefix = list(\
 		if(O.stats)
 			bio_stat = O.stats.getStat(STAT_BIO)
 		if(isghost(O))
-			bio_stat = STAT_LEVEL_GODLIKE
+			bio_stat = STAT_LEVEL_COSMIC 
 
 		if(bio_stat >= STAT_LEVEL_BASIC && prob(clamp((bio_stat / STAT_LEVEL_EXPERT) * 100, 0, 100)))
 			switch(type)

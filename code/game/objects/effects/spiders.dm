@@ -67,7 +67,6 @@
 	return 1
 
 /obj/effect/spider/stickyweb/chtmant
-	silk_baring = FALSE
 
 /obj/effect/spider/eggcluster
 	name = "egg cluster"

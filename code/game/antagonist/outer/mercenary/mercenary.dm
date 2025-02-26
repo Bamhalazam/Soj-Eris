@@ -31,7 +31,7 @@
 		STAT_COG = 20
 	)
 
-	perks = list(PERK_SURVIVOR, PERK_CODESPEAK_SERB)
+	perks = list(PERK_LUNGS_OF_IRON, PERK_BLOOD_OF_LEAD, PERK_CODESPEAK_SERB)
 
 /datum/antagonist/mercenary/equip()
 	var/mob/living/L = owner.current

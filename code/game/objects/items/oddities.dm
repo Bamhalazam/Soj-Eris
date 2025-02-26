@@ -639,13 +639,6 @@
 	spawn_tags = SPAWN_TAG_ODDITY
 	spawn_blacklisted = TRUE
 
-/obj/item/clothing/mask/gas/big_shot/equipped(mob/living/carbon/human/user, slot)
-	..()
-	if(slot == slot_wear_mask)
-		user.stats.addPerk(/datum/perk/big_shot)
-		var/datum/perk/big_shot/perk = user.stats.getPerk(PERK_BIG_SHOT)
-		perk.my_mask = src
-
 /obj/item/oddity/common/bearmath
 	name = "scrap of semi-semiotics research pamphlet"
 	desc = "A piece of paper with an unfinished mathematical equation."

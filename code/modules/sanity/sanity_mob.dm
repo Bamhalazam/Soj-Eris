@@ -52,8 +52,10 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	var/sanity_passive_gain_multiplier = 1
 	var/sanity_invulnerability = 0
 	var/level
-	var/max_level = 100
-	var/level_change = 0
+	var/max_level = 100 //Eris change to make sanity less of a wacky rollercoaster.
+	var/level_change = 0 //This single var through a long list of checks is are sorta "base" for are inspration gain
+	var/level_change_cap = 10 //This is the cap on insight you can get per level change.
+	var/level_change_min = 0.2 //Pitty insperation 0.5 no matter what
 
 	var/insight
 	var/max_insight = INFINITY
@@ -63,7 +65,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	var/insight_rest = 0
 	var/max_insight_rest = 1
 	var/resting = 0
-	var/max_resting = 1
+	var/max_resting = INFINITY
 
 	var/rest_timer_active = FALSE
 	var/rest_timer_time
@@ -74,7 +76,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	var/positive_prob_multiplier = 1
 	var/negative_prob = 30
 
-	var/view_damage_threshold = 20
+	var/view_damage_threshold = 35
 	var/environment_cap_coeff = 1 //How much we are affected by environmental cognitohazards. Multiplies the above threshold
 
 	var/say_time = 0
@@ -86,6 +88,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 	var/list/datum/breakdown/breakdowns = list()
 
 	var/eat_time_message = 0
+	var/smoking_message = 51 //Used as a cooldown, agv smoke has around 250~ puffs
 
 	var/life_tick_modifier = 2	//How often is the onLife() triggered and by how much are the effects multiplied
 
@@ -166,7 +169,7 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		if(A.sanity_damage) //If this thing is not nice to behold
 			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
 
-		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
+		if(ishuman(A)) //people negatively to people in distress
 			var/mob/living/carbon/human/H = A
 			if(H.sanity.level < 30 || H.health < 50)
 				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
@@ -188,7 +191,6 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 /datum/sanity/proc/handle_Insight()
 	var/moralist_factor = 1
 	var/style_factor = owner.get_style_factor()
-	if(owner.stats.getPerk(PERK_MORALIST))
 		for(var/mob/living/carbon/human/H in view(owner))
 			if(H.sanity.level > 60)
 				moralist_factor += 0.02
@@ -453,10 +455,10 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 
 /datum/sanity/proc/breakdown(var/positive_breakdown = FALSE)
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
-
+/*
 	if(owner.stats.getPerk(PERK_NJOY))
 		return // No breakdowns when you're Njoying life. TODO: once Psychosis is added, reduce to 50% chance
-
+*/
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
 		if(get_turf(M) in view(get_turf(owner)))
 			M.reg_break(owner)
@@ -492,3 +494,8 @@ GLOBAL_VAR_INIT(GLOBAL_INSIGHT_MOD, 1)
 		return
 
 #undef SANITY_PASSIVE_GAIN
+
+
+//Soj Edit
+/datum/sanity/proc/change_max_level(amount)
+	max_level += amount

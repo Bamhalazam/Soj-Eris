@@ -65,6 +65,35 @@
 	else
 		log_debug("passed list to getStat()")
 
+/datum/stat_holder/proc/add_Stat_cap(statName, amount)
+	var/datum/stat/S = stat_list[statName]
+	S.add_stat_cap(amount)
+
+/datum/stat_holder/proc/set_Stat_cap(statName, amount)
+	var/datum/stat/S = stat_list[statName]
+	S.set_stat_cap(amount)
+
+/datum/stat_holder/proc/grab_Stat_cap(statName)
+	var/datum/stat/S = stat_list[statName]
+	var/number = S.grabbed_stat_cap()
+	return number
+
+//Unused but might be good for later additions
+/datum/stat/proc/setValue_withcap(value)
+	if(value > stat_cap)
+		src.value = stat_cap
+	else
+		src.value = value
+
+/datum/stat/proc/add_stat_cap(amount)
+	stat_cap += amount
+
+/datum/stat/proc/set_stat_cap(amount)
+	stat_cap = amount
+
+/datum/stat/proc/grabbed_stat_cap()
+	return stat_cap
+
 //	Those are accept list of stats
 //	Compound stat checks.
 //	Lowest value among the stats passed in
@@ -167,6 +196,7 @@
 	var/desc = "Basic characteristic, you are not supposed to see this. Report to admins."
 	var/value = STAT_VALUE_DEFAULT
 	var/list/mods = list()
+	var/stat_cap = STAT_VALUE_DEFAULT_MAXIMUM
 
 /datum/stat/proc/addModif(delay, affect, id)
 	for(var/elem in mods)

@@ -405,9 +405,11 @@
 		to_chat(usr, SPAN_NOTICE("You've already retrieved your scrap circuit. You didn't lose it, did you?"))
 		return FALSE
 	cooldown_time = world.time + 12 HOURS
-	to_chat(usr, SPAN_NOTICE("You discreetly and stealthily slip your smuggled circuit out from their hiding place, the plastic and metal device clattering on the floor."))
-	log_and_message_admins("used their [src] perk.")
-	new /obj/item/circuitboard/artificer_turret/opifex(usr.loc)
+	to_chat(usr, SPAN_NOTICE("You forgot to bring your circuit along."))
+	//to_chat(usr, SPAN_NOTICE("You discreetly and stealthily slip your smuggled circuit out from their hiding place, the plastic and metal device clattering on the floor.")
+	log_and_message_admins("used their [src] perk. It is temporarily disabled while we port all the perks due to inter-dependencies. Contact Bam for clarification.")
+	//log_and_message_admins("used their [src] perk.")
+	//new /obj/item/circuitboard/artificer_turret/opifex(usr.loc)
 	spawn(20) holder.stats.removePerk(src.type) // Delete the perk
 	return ..()
 
@@ -572,31 +574,6 @@
 	icon_state = "mycusregeneration"
 	passivePerk = TRUE
 
-/datum/perk/mushroom_follower
-	name = "Spawn Shroomling"
-	desc = "Shroomlings are animal-intelligence mycus capable of following simple orders like 'Shroomling 'Name' Follow.' and 'Shroomling 'Name' Stop.' who will stay by you when ordered. While capable of fighting, they are quite weak, the \
-	major benefit of having one is they may turn any food you feed into them into useful healing chemicals contained in bottles of resin."
-	icon_state = "spawnshroomling"
-	active = FALSE
-	passivePerk = FALSE
-	var/used = FALSE // Not deleting after use since the description is useful.
-	var/follower_type = /mob/living/carbon/superior_animal/fungi/shroom
-
-/datum/perk/mushroom_follower/activate()
-	var/mob/living/carbon/human/user = usr
-	if(!istype(user))
-		return ..()
-	if(used)
-		to_chat(user, SPAN_NOTICE("You've already created your companion, you didn't lose them did you?"))
-		return FALSE
-	used = TRUE
-	to_chat(usr, SPAN_NOTICE("You grow a follower!"))
-	var/mob/living/carbon/superior_animal/fungi/mushroom = new follower_type(user.loc)
-	mushroom.friends += user
-	mushroom.following = user
-	mushroom.last_followed = user
-	..()
-
 // Food related perks
 /datum/perk/carnivore
 	name = "Carnivore"
@@ -611,6 +588,8 @@
 	based products."
 	icon_state = "herbivore"
 	passivePerk = TRUE
+
+//FOLLOWER CODE WAS HERE - READD IT HERE, IT WAS REMOVED TO EXPEDITE PORTING - Bam
 
 ///////////////////////////////////// Slime perks
 /datum/perk/racial/limb_regen
@@ -746,3 +725,5 @@
 		H.metabolism_effects.nsa_bonus -= 100
 		H.metabolism_effects.calculate_nsa()
 	..()
+
+//FOLLOWER CODE WAS HERE - READD IT HERE, IT WAS REMOVED TO EXPEDITE PORTING - Bam

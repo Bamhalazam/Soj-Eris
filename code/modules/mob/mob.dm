@@ -1283,3 +1283,17 @@ mob/proc/yank_out_object()
 
 /mob/proc/ssd_check()
 	return !client && !teleop
+
+/mob/proc/updateDialog()
+	// Check that people are actually using the machine. If not, don't update anymore.
+	if(in_use)
+		var/list/nearby = viewers(1, src)
+		var/is_in_use = 0
+		for(var/mob/M in nearby)
+			if ((M.client && M.machine == src))
+				is_in_use = 1
+				src.interact(M)
+		var/ai_in_use = AutoUpdateAI(src)
+
+		if(!ai_in_use && !is_in_use)
+			in_use = 0

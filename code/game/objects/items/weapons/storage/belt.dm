@@ -91,7 +91,7 @@
 	new /obj/item/tool/wirecutters/armature(src)
 	new /obj/item/tool/shovel/power(src)
 	new /obj/item/stack/cable_coil/random(src)
-	
+
 /obj/item/storage/belt/utility/roboticist
 	spawn_blacklisted = TRUE
 
@@ -103,7 +103,7 @@
 	new /obj/item/tool/wirecutters/pliers(src)
 	new /obj/item/stack/cable_coil/random(src)
 	new /obj/item/tool/multitool(src)
-	
+
 /obj/item/storage/belt/utility/neotheology
 	name = "neotheology utility belt"
 	desc = "Waist-held holy items."
@@ -291,9 +291,6 @@
 /obj/item/storage/belt/medical/opifex/full/populate_contents()
 	new /obj/item/device/scanner/health(src)
 	new /obj/item/reagent_containers/glass/bottle/stoxin(src)
-	new /obj/item/reagent_containers/syringe/large/hyperzine(src)
-	new /obj/item/reagent_containers/syringe/large/tricordrazine(src)
-	new /obj/item/reagent_containers/syringe/large/inaprovaline(src)
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/extinguisher/mini(src)

@@ -15,20 +15,6 @@
 	desc = "Significantly improves natural regeneration."
 
 
-/datum/mutation/t3/oborin
-	name = "Oborin syndrome"
-	desc = "Removes ability to distinguishing between colors and taste."
-	NSA_load = 0
-
-/datum/mutation/t3/oborin/imprint(mob/living/carbon/user)
-	if(..())
-		user.stats.addPerk(PERK_OBORIN_SYNDROME)
-
-/datum/mutation/t3/oborin/cleanse(mob/living/carbon/user)
-	if(..())
-		user.stats.removePerk(PERK_OBORIN_SYNDROME)
-
-
 /datum/mutation/t3/night_vision
 	name = "Night vision"
 	desc = "Enhances eye sensitivity, allowing to see in the dark as if wearing night-vision goggles."

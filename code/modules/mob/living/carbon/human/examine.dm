@@ -180,7 +180,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.stats.getPerk(PERK_NOBLE))
 			msg += "[T.He] [T.has] a noble demeanour.\n"
-		if(H.stats.getPerk(PERK_LOWBORN))
+		if(H.stats.getPerk(PERK_JUNKBORN))
 			msg += "[T.He] [T.has] a lowborn demeanour.\n"
 
 	//crazy

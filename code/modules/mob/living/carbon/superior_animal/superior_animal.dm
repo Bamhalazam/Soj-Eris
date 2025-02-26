@@ -100,6 +100,23 @@
 	var/grabbed_by_friend = FALSE //is this superior_animal being wrangled?
 	var/ticks_processed = 0
 
+	var/reagent_immune = FALSE
+	var/toxin_immune = FALSE
+	var/do_gibs = FALSE
+	var/colony_friend = FALSE
+	var/friendly_to_colony = FALSE
+	var/known_languages = list()
+
+	//AI behavior for following
+	var/follow_message = "bobs and begins running after you." // Message that the mob emote when they start following. Include the name of the one who follow at the end
+	var/stop_message = "stops in place." // Message that the mob emote when they stop following. Include the name of the one who follow at the end
+	var/follow_distance = 3
+	var/obey_friends = TRUE // Do we obey only friends ?
+	var/mob/following = null // Who are we following?
+	/// The last mob this mob has followed, nulled on the first tick the mob is not following anymore. Make sure to assign this to the same value as following.
+	var/mob/last_followed = null // Who did we follow last?
+
+
 	// Armor related datum
 	var/datum/armor/armor
 
@@ -374,3 +391,6 @@
 	if(istype(mover, /obj/item/projectile))
 		return stat ? TRUE : FALSE
 	. = ..()
+
+/mob/living/carbon/superior_animal/proc/doTargetMessage()
+	return

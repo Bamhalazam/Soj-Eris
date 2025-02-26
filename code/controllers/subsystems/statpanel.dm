@@ -85,3 +85,12 @@ SUBSYSTEM_DEF(statpanels)
 				target << output("[turfitems];", "statbrowser:update_listedturf")
 		if(MC_TICK_CHECK)
 			return
+
+/datum/controller/subsystem/statpanels/proc/set_perks_tab(client/target, mob/target_mob)
+	var/list/perk_data = list()
+	for(var/datum/perk/P as anything in target_mob?.stats?.perks)
+		perk_data += list(list("name" = P.name, "desc" = P.desc, "cooldown" = P.cooldown_time, "ref" = "[REF(P)]", "passive" = P.passivePerk))
+	target.stat_panel.send_message("update_perks", list("world_time" = world.time, "perk_data" = perk_data))
+
+/// Stat panel window declaration
+/client/var/datum/tgui_window/stat_panel

@@ -203,6 +203,33 @@
 	hard_drive.store_file(new /datum/computer_file/program/trade/order())
 	set_autorun("trade_orders")
 
+/obj/item/modular_computer/console/preset/nanobot
+	suitable_cell = /obj/item/cell/large/moebius/super
+	layer = ABOVE_MOB_LAYER
+
+/obj/item/modular_computer/console/preset/nanobot/install_default_hardware()
+	..()
+	network_card = new /obj/item/computer_hardware/network_card(src)
+	processor_unit = new /obj/item/computer_hardware/processor_unit/super(src)
+	tesla_link = new /obj/item/computer_hardware/tesla_link(src)
+	hard_drive = new /obj/item/computer_hardware/hard_drive/cluster(src)
+	cell = new /obj/item/cell/large/moebius(src)
+	gps_sensor = new /obj/item/computer_hardware/gps_sensor(src)
+	led = new /obj/item/computer_hardware/led/adv(src)
+	scanner = new /obj/item/computer_hardware/scanner/reagent(src)
+	printer = new/obj/item/computer_hardware/printer(src)
+	card_slot = new/obj/item/computer_hardware/card_slot(src)
+	network_card.matter = list()
+	processor_unit.matter = list()
+	tesla_link.matter = list()
+	hard_drive.matter = list()
+	cell.matter = list()
+	gps_sensor.matter = list()
+	led.matter = list()
+	scanner.matter = list()
+	printer.matter = list()
+	card_slot.matter = list()
+
 //Dock control
 /*
 /obj/item/modular_computer/console/preset/dock/install_default_hardware()

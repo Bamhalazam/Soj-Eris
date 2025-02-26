@@ -123,7 +123,7 @@ var/list/shelter_blacklist = list(
 		H.stats.changeStat(stat, rand(STAT_LEVEL_ADEPT, STAT_LEVEL_PROF))
 	var/datum/perk/perk_random = pick(subtypesof(/datum/perk/oddity))
 	H.stats.addPerk(perk_random)
-	H.stats.addPerk(pick(/datum/perk/survivor, /datum/perk/selfmedicated, /datum/perk/vagabond, /datum/perk/merchant, /datum/perk/inspiration))
+	H.stats.addPerk(pick(PERK_LINGUIST, PERK_SURVIVOR, PERK_BALLS_OF_PLASTEEL))
 	H.add_language(LANGUAGE_LATIN)
 	var/obj/item/implant/core_implant/cruciform/cruciform = new /obj/item/implant/core_implant/cruciform(src)
 	cruciform.add_module(new CRUCIFORM_CLONING)

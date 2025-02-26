@@ -4,11 +4,6 @@
 	if(!client)
 		return
 
-	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_COP))
-		message = cop_codes.find_message(message) ? "[message] ([cop_codes.find_message(message)])" : message
-	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_SERB))
-		message = serb_codes.find_message(message) ? "[message] ([serb_codes.find_message(message)])" : message
-
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
@@ -17,11 +12,28 @@
 		// If we have the right perk or standing close - GetVoice() again, but skip mask check
 		if((get_dist(src, H) < 2) || stats?.getPerk(PERK_EAR_OF_QUICKSILVER))
 			speaker_name = H.rank_prefix_name(H.GetVoice(FALSE))
+		//If the person is a ghost/spectator - you should be able to get the voice of the person.
+		if(isghost(src))
+			speaker_name = H.rank_prefix_name(H.GetVoice(FALSE))
 
 	if(speech_volume)
 		message = "<FONT size='[speech_volume]'>[message]</FONT>"
 	if(italics)
 		message = "<i>[message]</i>"
+
+	if(verb == "reports")
+		var/cop_code
+		if(is_neotheology_disciple(src))
+			cop_code = get_cop_code(holy = TRUE)
+		else
+			cop_code = get_cop_code()
+		if(isghost(src))
+			message = cop_code + " (" + replace_characters(message, list("@"=")"))
+		else
+			if(!src.stats.getPerk(PERK_CODESPEAK))
+				message = cop_code
+			else
+				message = cop_code + " (" + replace_characters(message, list("@"=")"))
 
 	var/track = null
 	if(isghost(src))
@@ -36,7 +48,7 @@
 		if(get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
-	if(language)
+	if(language && !(verb == "reports")) // Not applying language scramble to codespeak
 		var/nverb = null
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check to see if we can understand what the speaker is saying. If so, add the name of the language after the verb. Don't do this for Galactic Common.
 			on_hear_say("<span class='game say'>[track]<span class='name'>[speaker_name]</span>[alt_name] [language.format_message(message, verb)]</span>")
@@ -62,40 +74,45 @@
 	var/time = say_timestamp()
 	to_chat(src,"[time] [message]")
 
-/mob/proc/hear_radio(var/message, var/verb="says", var/datum/language/language,\
-		var/part_a, var/part_b, var/mob/speaker = null, var/hard_to_hear = 0, var/voice_name ="")
+/mob/proc/hear_radio(var/message, var/rverb="says", var/datum/language/language=null,\
+		var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/voice_name ="")
 
 	if(!client)
 		return
 
-	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_COP))
-		var/found = cop_codes.find_message_radio(message)
-		if(found)
-			message = "[message] ([found])"
-	if(isghost(src) || stats.getPerk(PERK_CODESPEAK_SERB))
-		var/found = serb_codes.find_message_radio(message)
-		if(found)
-			message = "[message] ([found])"
-
 	var/speaker_name = get_hear_name(speaker, hard_to_hear, voice_name)
 
-	if(language)
+	if(rverb == "reports")
+		var/cop_code
+		if(is_neotheology_disciple(src))
+			cop_code = get_cop_code(holy = TRUE)
+		else
+			cop_code = get_cop_code()
+		if(isghost(src))
+			message = cop_code + " (" + replace_characters(message, list("@"=")"))
+		else
+			if(!src.stats.getPerk(PERK_CODESPEAK))
+				message = cop_code
+			else
+				message = cop_code + " (" + replace_characters(message, list("@"=")"))
+
+	if(language && !(rverb == "reports"))
 		if(!say_understands(speaker,language) || language.name == LANGUAGE_COMMON) //Check if we understand the message. If so, add the language name after the verb. Don't do this for Galactic Common.
-			message = language.format_message_radio(message, verb)
+			message = language.format_message_radio(message, rverb)
 		else
 			var/nverb = null
 			switch(src.get_preference_value(/datum/client_preference/language_display))
 				if(GLOB.PREF_FULL) // Full language name
-					nverb = "[verb] in [language.name]"
+					nverb = "[rverb] in [language.name]"
 				if(GLOB.PREF_SHORTHAND) //Shorthand codes
-					nverb = "[verb] ([language.shorthand])"
+					nverb = "[rverb] ([language.shorthand])"
 				if(GLOB.PREF_OFF)//Regular output
-					nverb = verb
+					nverb = rverb
 			message = language.format_message_radio(message, nverb)
 	else
-		message = "[verb], <span class=\"body\">\"[message]\"</span>"
+		message = "[rverb], <span class=\"body\">\"[message]\"</span>"
 
-	on_hear_radio(part_a, speaker_name, part_b, message)
+	on_hear_radio(part_a, speaker_name, part_b, message, part_c)
 
 /mob/proc/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
 	if(hard_to_hear)
@@ -130,7 +147,7 @@
 			changed_voice = TRUE
 			var/mob/living/carbon/human/I
 
-			for(var/mob/living/carbon/human/M in SShumans.mob_list)
+			for(var/mob/living/carbon/human/M in SSmobs.mob_list)
 				if(M.real_name == speaker_name)
 					I = M
 					break
@@ -158,11 +175,11 @@
 
 	if(changed_voice)
 		if(impersonating)
-			return "<a href=\"byond://?src=\ref[src];trackname=[speaker_name];track=\ref[impersonating]\">[speaker_name] ([jobname])</a>"
+			return "<a href=\"byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[impersonating]\">[speaker_name] ([jobname])</a>"
 		else
 			return "[speaker_name] ([jobname])"
 	else
-		return "<a href=\"byond://?src=\ref[src];trackname=[speaker_name];track=\ref[speaker]\">[speaker_name] ([jobname])</a>"
+		return "<a href=\"byond://?src=\ref[src];trackname=[html_encode(speaker_name)];track=\ref[speaker]\">[speaker_name] ([jobname])</a>"
 
 /mob/observer/ghost/get_hear_name(var/mob/speaker, hard_to_hear, voice_name)
 	. = ..()
@@ -177,17 +194,17 @@
 /proc/say_timestamp()
 	return "<span class='say_quote'>\[[stationtime2text()]\]</span>"
 
-/mob/proc/on_hear_radio(part_a, speaker_name, part_b, message)
-	to_chat(src,"[part_a][speaker_name][part_b][message]")
+/mob/proc/on_hear_radio(part_a, speaker_name, part_b, message, part_c)
+	to_chat(src,"[part_a][speaker_name][part_b][message][part_c]")
 
 
-/mob/living/silicon/on_hear_radio(part_a, speaker_name, part_b, message)
+/mob/living/silicon/on_hear_radio(part_a, speaker_name, part_b, message, part_c)
 	var/time = say_timestamp()
-	to_chat(src,"[time][part_a][speaker_name][part_b][message]")
+	to_chat(src,"[time][part_a][speaker_name][part_b][message][part_c]")
 
 
 /mob/proc/hear_signlang(var/message, var/verb = "gestures", var/datum/language/language, var/mob/speaker = null)
-	if(!client)
+	if(!client || !speaker)
 		return
 
 	if(say_understands(speaker, language))

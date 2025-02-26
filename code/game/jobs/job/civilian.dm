@@ -15,7 +15,7 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 25, LANGUAGE_CYRILLIC = 15, LANGUAGE_JIVE = 80)
 	access = list(access_bar, access_kitchen, access_maint_tunnels, access_change_club, access_artist)
 	initial_balance = 3000
-	perks = list(PERK_CLUB)
+	perks = list(PERK_BARTENDER)
 	wage = WAGE_NONE // Makes his own money
 	department_account_access = TRUE
 	stat_modifiers = list(
@@ -52,7 +52,7 @@
 	also_known_languages = list(LANGUAGE_CYRILLIC = 10, LANGUAGE_JIVE = 60)
 	access = list(access_bar, access_kitchen, access_maint_tunnels)
 	initial_balance = 750
-	perks = list(PERK_CLUB)
+	perks = list(PERK_BARTENDER)
 	wage = WAGE_NONE //They should get paid by the club owner, otherwise you know what to do.
 	department_account_access = TRUE
 	stat_modifiers = list(

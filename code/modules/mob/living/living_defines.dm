@@ -16,15 +16,6 @@
 
 	var/inventory_shown = 1
 
-	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
-	var/bruteloss = 0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
-	var/oxyloss = 0	//Oxygen depravation damage (no air in lungs)
-	var/toxloss = 0	//Toxic damage caused by being poisoned or radiated
-	var/fireloss = 0	//Burn damage caused by being way too hot, too cold or burnt.
-	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
-	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
-	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
-
 	var/injury_type = INJURY_TYPE_LIVING //Humanmob uses species instead
 	var/armor_divisor = 1 //Used for generic attacks
 
@@ -84,3 +75,56 @@
 
 	spawn_frequency = 10
 	bad_type = /mob/living
+
+
+//Sojourn-based variables. Not all are implemented, but they have been ported for compatibility's sake
+
+	var/death_threshold = HEALTH_THRESHOLD_SOFTCRIT
+
+	var/list/projectile_damage_increment = list()
+	var/list/projectile_damage_mult = list()
+	var/inherent_projectile_mult = 1
+	var/inherent_projectile_increment = 0
+
+	var/projectile_speed_increment = 0
+	var/projectile_speed_mult = 1
+
+	/// The mob groups, defined in admin.dm, this mob is in. Stored as keys.
+	var/list/groups_in = list()
+	/// The buildmode holders this mob is currently selected by.
+	var/list/obj/effect/bmode/buildholder/selected_by = list()
+
+	var/projectile_armor_divisor_adjustment = 0
+	var/projectile_armor_divisor_mult = 1
+
+	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS
+	var/bruteloss = 0.0	//Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
+	var/oxyloss = 0.0	//Oxygen depravation damage (no air in lungs)
+	var/toxloss = 0.0	//Toxic damage caused by being poisoned or radiated
+	var/fireloss = 0.0	//Burn damage caused by being way too hot, too cold or burnt.
+	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early. slimes also deal cloneloss damage to victims
+	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
+	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
+
+	var/tod = null // Time of death
+	var/additional_darksight = 0	//Added to darksight
+	var/flash_mod = 0	//Carbon
+
+	//Used in living/recoil.dm
+	var/mod_climb_delay = 1 // delay for climb
+
+	//Task-Mastery - Gained by doing completely random tasks
+	var/datum/task_master/labourer/learnt_tasks
+
+	var/brute_mod_perk = 1 //this and the ones below adjust various damages via perks
+	var/burn_mod_perk = 1 //Please make any and all adjustments multiplicative only for all damage mods
+	var/toxin_mod_perk = 1
+	var/oxy_mod_perk = 1
+
+	var/list/drop_items = list() //Held items a creature can drop when they die. Accessed through drop_death_loot()
+	var/target_dummy = FALSE // Simple yes no if we are when spotted targeted over **everything** esle, used for simple and super mobs.
+
+	/// Icon used for speechbubbles
+	var/bubble_icon = "default"
+
+	var/never_stimulate_air = FALSE

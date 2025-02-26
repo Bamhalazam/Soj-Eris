@@ -11,7 +11,7 @@
 	initial_balance	= 0 // This is now defined in code\modules\economy\cash.dm under spacecash/bundle/Vagabond as they carry cash on them.
 	wage = WAGE_NONE //Get a job ya lazy bum
 	//alt_titles = list("Technomancer Assistant","Moebius Medical Intern","Moebius Research Assistant")
-	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_CYRILLIC = 5)
+	also_known_languages = list(LANGUAGE_CYRILLIC = 15, LANGUAGE_EURO = 5)
 
 	access = list(access_maint_tunnels)
 	outfit_type = /decl/hierarchy/outfit/job/assistant
@@ -25,7 +25,7 @@
 		STAT_COG = 8
 	)
 
-	perks = list(/datum/perk/vagabond)
+	// perks = list(/datum/perk/vagabond) - no perks for you!
 
 	description = "You are a vagabond, journeying through the vast expanses of space upon the CEV Eris. You will not be paid a wage.<br>\
 Though this does not mean you have no home, as the Eris is your home. Whatever planet you may have came from a now distant memory.<br>\

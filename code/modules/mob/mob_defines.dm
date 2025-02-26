@@ -110,6 +110,8 @@ While it would be entirely possible to check the mob's move handlers list for th
 
 
 	var/datum/hud/hud_used
+	var/in_use = FALSE // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
+
 
 	var/list/grabbed_by = list()
 	var/list/requests = list()

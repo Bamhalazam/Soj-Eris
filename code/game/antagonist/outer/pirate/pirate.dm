@@ -37,7 +37,7 @@
 		STAT_COG = 10
 	)
 
-	perks = list(PERK_SURVIVOR)
+	perks = list(PERK_LUNGS_OF_IRON)
 
 /datum/antagonist/pirate/equip()
 	var/mob/living/L = owner.current

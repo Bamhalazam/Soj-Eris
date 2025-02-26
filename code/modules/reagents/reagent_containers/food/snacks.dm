@@ -34,6 +34,8 @@
 	var/cooked = FALSE // if TRUE, this food item will provide sanity_gain_per_bite and fulfill desire requirements
 	var/list/taste_tag = list(BLAND_FOOD)
 
+	var/appraised = 0 //Has this piece of food been appraised? We can only do that once.
+	var/chef_buff_type = 0 //What type of buff does this have to it?
 	price_tag = 25
 
 /obj/item/reagent_containers/food/snacks/Initialize()

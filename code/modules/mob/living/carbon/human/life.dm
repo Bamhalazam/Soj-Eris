@@ -747,8 +747,6 @@
 		if(!(CE_ALCOHOL in chem_effects))
 			if(stats.getPerk(/datum/perk/inspiration))
 				stats.removePerk(/datum/perk/active_inspiration)
-			if(stats.getPerk(PERK_ALCOHOLIC))
-				stats.removePerk(PERK_ALCOHOLIC_ACTIVE)
 
 	if(status_flags & GODMODE)
 		return FALSE	//godmode

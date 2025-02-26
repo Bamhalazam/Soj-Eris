@@ -29,7 +29,7 @@
 		STAT_COG = 25
 	)
 
-	perks = list(/datum/perk/selfmedicated)
+	// perks = list() - Blanked out while we rework the roles.
 
 	software_on_spawn = list(/datum/computer_file/program/comm,
 							 /datum/computer_file/program/suit_sensors,
@@ -84,7 +84,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 		STAT_COG = 10
 	)
 
-	perks = list(/datum/perk/selfmedicated)
+	// perks = list() - Blanked out while we rework the roles.
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
 							/datum/computer_file/program/chem_catalog,
@@ -145,7 +145,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 		STAT_BIO = 30
 	)
 
-	perks = list(/datum/perk/selfmedicated/chemist)
+	// perks = list() - Blanked out while we rework the roles.
 
 	software_on_spawn = list(/datum/computer_file/program/chem_catalog,
 							/datum/computer_file/program/scanner)
@@ -198,7 +198,7 @@ Your second loyalty is to your career with Moebius corp, and to your coworkers i
 		STAT_VIG = 10,
 	)
 
-	perks = list(/datum/perk/selfmedicated)
+	// perks = list() - Blanked out while we rework the roles.
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
 							/datum/computer_file/program/chem_catalog,
@@ -267,7 +267,7 @@ Remember that you are a noncombatant. Any weapons you carry should be used for b
 		STAT_MEC = 15
 	)
 
-	perks = list(/datum/perk/selfmedicated)
+	// perks = list() - Blanked out while we rework the roles.
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
 							/datum/computer_file/program/chem_catalog,

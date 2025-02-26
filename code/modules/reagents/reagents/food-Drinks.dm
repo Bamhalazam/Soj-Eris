@@ -2655,7 +2655,7 @@
 
 
 /datum/reagent/alcohol/roachbeer/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
-	if(H.stats.getPerk(PERK_VAGABOND))	// increases sanity_gain to 3 if true
+	if(H.stats.getPerk(PERK_SURVIVOR))	// increases sanity_gain to 3 if true
 		effect_multiplier *= 2
 	..()
 
@@ -2705,7 +2705,7 @@
 	M.faction = "roach"
 
 /datum/reagent/alcohol/roachbeer/apply_sanity_effect(mob/living/carbon/human/H, effect_multiplier)
-	if(H.stats.getPerk(PERK_VAGABOND))	// increases sanity_gain to 3 if true
+	if(H.stats.getPerk(PERK_SURVIVOR))	// increases sanity_gain to 3 if true
 		effect_multiplier *= 2
 	..()
 

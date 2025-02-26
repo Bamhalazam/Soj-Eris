@@ -24,16 +24,17 @@
 
 	var/datum/stat_holder/S = owner.stats
 	var/light_grain_perks = list(
-		PERK_SURVIVOR, PERK_VAGABOND,  // Jobs
-		PERK_NIHILIST, PERK_LOWBORN,   // Fates
+		PERK_SURVIVOR, PERK_SURVIVOR,  // Jobs
+		PERK_NIHILIST, PERK_JUNKBORN,   // Fates
 		PERK_HOLY_LIGHT,               // Aura
 	)
 
 	// Suppressital clears the mind
+	/*
 	if(S.getPerk(PERK_NJOY))
 		grain.icon_state = ""
 		return
-
+	*/
 	var/state = "[rand(1, 9)] "
 
 	//Some perks reduce the amount of grain even at low sanity. This is either because the character is used to bad conditions, or faith clears their mind.

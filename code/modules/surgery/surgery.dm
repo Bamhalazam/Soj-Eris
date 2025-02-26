@@ -76,10 +76,10 @@
 	if(inflict_agony)
 		var/strength = inflict_agony
 
-		// At STAT_LEVEL_GODLIKE, there is no pain from the surgery at all
+		// At STAT_LEVEL_COSMIC , there is no pain from the surgery at all
 		// This supports negative stat values
 		if(user && user.stats)
-			strength *= max((STAT_LEVEL_GODLIKE - user.stats.getStat(required_stat)) / STAT_LEVEL_GODLIKE, 0)
+			strength *= max((STAT_LEVEL_COSMIC  - user.stats.getStat(required_stat)) / STAT_LEVEL_COSMIC , 0)
 
 		organ.owner_pain(strength)
 

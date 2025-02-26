@@ -26,7 +26,7 @@
 		STAT_VIG = 10
 	)
 
-	perks = list(/datum/perk/merchant, /datum/perk/deep_connection, /datum/perk/oddity/market_prof)
+	// perks = list() - Blanked out while we rework the roles.
 
 	description = "You are the head of the local branch of Asters Merchant Guild, and eris' guild representative<br>\
 A staunch entrepreneur, you are motivated by profit, for the guild and especially for yourself. You are here firstly to make as much money as you can, and secondly to keep the crew supplied. You can order things at cargo using the local guild funds, these will not magically replenish so you will run out of money quickly if you don't charge. Take payments by card or cash, and deposit them into the guild account to enable more purchases.<br>\
@@ -91,7 +91,7 @@ Your second loyalty is to the guild. Ensure it retains good relations with priva
 		STAT_VIG = 10,
 	)
 
-	perks = list(/datum/perk/deep_connection)
+	// perks = list() - Blanked out while we rework the roles.
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,
@@ -167,7 +167,7 @@ Character Expectations:<br>\
 		STAT_MEC = 15
 	)
 
-	perks = list(/datum/perk/deep_connection)
+	// perks = list() - Blanked out while we rework the roles.
 
 	software_on_spawn = list(///datum/computer_file/program/supply,
 							 ///datum/computer_file/program/deck_management,

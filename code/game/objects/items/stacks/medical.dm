@@ -581,12 +581,6 @@
 	automatic_charge_overlays = FALSE
 	consumable = TRUE // Will the stack disappear entirely once the amount is used up?
 	matter = list(MATERIAL_BIOMATTER = 2.5)
-	natural_remedy = TRUE
-	fancy_icon = FALSE
-	perk_required = FALSE
-	needed_perk = null
-	bio_requirement = 5
-	stacktype_alt = null
 
 /obj/item/stack/medical/ointment/advanced/regenerative_ichor
 	name = "regenerative ichor"
@@ -596,9 +590,3 @@
 	automatic_charge_overlays = FALSE
 	consumable = TRUE	// Will the stack disappear entirely once the amount is used up?
 	matter = list(MATERIAL_BIOMATTER = 2.5)
-	natural_remedy = TRUE
-	fancy_icon = FALSE
-	perk_required = FALSE
-	needed_perk = null
-	bio_requirement = 5
-	stacktype_alt = null

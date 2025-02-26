@@ -113,8 +113,8 @@
 		/obj/item/cell/medium = 1
 	)
 	spawn_blacklisted = TRUE
-
-//opifex turret board
+/* -- OPIFEX TURRET COMMENTED OUT WHILE WE PORT OTHER STUFF - Bam
+//opifex
 	/obj/item/circuitboard/artificer_turret/opifex
 	build_name = "opifex turret"
 	build_path = /obj/machinery/porta_turret/artificer/opifex
@@ -124,3 +124,4 @@
 		/obj/item/stock_parts/manipulator = 1,
 		/obj/item/device/assembly/prox_sensor = 1,
 	)
+*/

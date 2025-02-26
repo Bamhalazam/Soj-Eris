@@ -907,7 +907,7 @@
 	color = "#001aff"
 	overdose = REAGENTS_OVERDOSE
 	metabolism = REM/2
-
+/* - COMMENTED OUT, MISSING DEPENDENCIES
 /datum/reagent/medicine/suppressital/affect_blood/(mob/living/carbon/M)
 	if(!M.stats.getPerk(PERK_NJOY))
 		M.stats.addPerk(PERK_NJOY)
@@ -916,3 +916,4 @@
 	..()
 	M.stats.removePerk(PERK_NJOY)
 
+*/

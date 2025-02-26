@@ -123,7 +123,7 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 		html += "<tr>"
 		var/datum/wire_description/wd = get_description(GetIndex(colour))
 		if(wd)
-			if(user.stats && user.stats.getPerk(PERK_TECHNOMANCER) || user_skill && (wd.skill_level <= user_skill))
+			if(user.stats && user.stats.getPerk(PERK_TECHNOMANCY) || user_skill && (wd.skill_level <= user_skill))
 				html += "<td[row_options1]><font color='[colour]'>[wd.description]</font></td>"
 			else
 				html += "<td[row_options1]><font color='[colour]'>[capitalize(colour)]</font></td>"

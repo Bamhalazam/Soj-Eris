@@ -69,3 +69,16 @@
 
 // Reagent specific heat is not yet implemented, this is here for compatibility reasons
 #define SPECIFIC_HEAT_DEFAULT			200
+
+// Some on_mob_life() procs check for alien races.
+#define IS_XENOS   10
+#define IS_CHTMANT 11
+#define IS_SYNTHETIC 12
+#define IS_SLIME 13
+#define IS_MARQUA 14
+#define IS_KRIOSAN 15
+#define IS_AKULA 16
+#define IS_TREE 17
+#define IS_OPIFEX 18
+#define IS_NARAMAD 19
+#define IS_CINDARITE 20

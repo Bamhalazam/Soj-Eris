@@ -590,11 +590,9 @@ proc/is_blind(A)
 		prob_evade += base_prob_evade
 	if(!stats)
 		return prob_evade
-	prob_evade += base_prob_evade * (stats.getStat(STAT_VIG)/STAT_LEVEL_GODLIKE - weight_coeff())
+	prob_evade += base_prob_evade * (stats.getStat(STAT_VIG)/STAT_LEVEL_COSMIC  - weight_coeff())
 	if(stats.getPerk(PERK_SURE_STEP))
-		prob_evade += base_prob_evade*30/STAT_LEVEL_GODLIKE
-	if(stats.getPerk(PERK_RAT))
-		prob_evade += base_prob_evade/1.5
+		prob_evade += base_prob_evade*30/STAT_LEVEL_COSMIC 
 	return prob_evade
 
 /mob/proc/mob_playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)

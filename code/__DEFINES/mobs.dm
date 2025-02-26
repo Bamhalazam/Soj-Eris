@@ -226,3 +226,81 @@
 
 #define BP_PSION "psionic organ"
 #define BP_NANOGATE "nanogate"
+
+// Carrion organ processes
+#define OP_MAW       "carrion maw"
+#define OP_SPINNERET "carrion spinneret"
+#define OP_CHEMICALS "chemical vessel"
+
+// Organs.
+#define BP_MOUTH    "mouth"
+#define BP_EYES     "eyes"
+#define BP_BRAIN    "brain"
+#define BP_B_CHEST  "rib cage"
+#define BP_B_GROIN  "pelvis"
+#define BP_B_HEAD   "skull"
+#define BP_B_L_ARM  "left humerus"
+#define BP_B_R_ARM  "right humerus"
+#define BP_B_L_LEG  "left femur"
+#define BP_B_R_LEG  "right femur"
+
+#define BP_PSION "psionic organ"
+#define BP_NANOGATE "nanogate"
+
+// Funny Organs.
+#define BP_HIVE     "hive node"
+#define BP_NUTRIENT "nutrient vessel"
+#define BP_ACID     "acid gland"
+#define BP_EGG      "egg sac"
+#define BP_RESIN    "resin spinner"
+#define BP_STRATA   "neural strata"
+#define BP_RESPONSE "response node"
+#define BP_GBLADDER "gas bladder"
+#define BP_POLYP    "polyp segment"
+#define BP_ANCHOR   "anchoring ligament"
+#define BP_ACETONE  "acetone reactor"
+
+// Robo Organs.
+#define BP_POSIBRAIN         "posibrain"
+#define BP_VOICE             "vocal synthesiser"
+#define BP_STACK             "stack"
+#define BP_OPTICS            "optics"
+#define BP_SYSTEM_CONTROLLER "system controller"
+
+// Unique carrion Organs.
+#define BP_SPCORE   "spider core"
+
+//Augmetations
+#define BP_AUGMENT_R_ARM        "right arm augment"
+#define BP_AUGMENT_L_ARM        "left arm augment"
+#define BP_AUGMENT_R_HAND       "right hand augment"
+#define BP_AUGMENT_L_HAND       "left hand augment"
+#define BP_AUGMENT_R_LEG        "right leg augment"
+#define BP_AUGMENT_L_LEG        "left leg augment"
+#define BP_AUGMENT_CHEST_ARMOUR "chest armor augment"
+#define BP_AUGMENT_CHEST_ACTIVE "active chest augment"
+#define BP_AUGMENT_HEAD         "head augment"
+
+//Augment flags
+#define AUGMENTATION_MECHANIC 1
+#define AUGMENTATION_ORGANIC  2
+
+// Limbs.
+#define BP_L_LEG  "l_leg"
+#define BP_R_LEG  "r_leg"
+#define BP_L_FOOT "l_foot"
+#define BP_R_FOOT "r_foot"
+#define BP_L_ARM  "l_arm"
+#define BP_R_ARM  "r_arm"
+#define BP_L_HAND "l_hand"
+#define BP_R_HAND "r_hand"
+#define BP_HEAD   "head"
+#define BP_CHEST  "torso"
+#define BP_TORSO  "torso"
+#define BP_BACK   "back"
+#define BP_GROIN  "groin"
+#define BP_LEGS list(BP_R_LEG, BP_L_LEG)
+#define BP_ARMS list(BP_R_ARM, BP_L_ARM)
+#define BP_ALL_LIMBS list(BP_CHEST, BP_GROIN, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
+#define BP_BY_DEPTH list(BP_HEAD, BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_CHEST)
+#define BP_BASE_PARTS list(BP_TORSO, BP_GROIN)

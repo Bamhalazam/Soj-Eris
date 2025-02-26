@@ -110,6 +110,16 @@
 
 	SEND_SIGNAL(src, COMSIG_ADDVAL)
 
+/obj/item/organ/internal/proc/organ_add_verb(procpath/P)
+	owner_verbs |= P
+	if(owner)
+		add_verb(owner, P)
+
+/obj/item/organ/internal/proc/organ_remove_verb(procpath/P)
+	owner_verbs -= P
+	if(owner)
+		remove_verb(owner, P)
+
 /obj/item/organ/internal/proc/handle_organ_eff()
 	for(var/process in organ_efficiency)
 		if(is_usable())
