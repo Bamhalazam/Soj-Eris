@@ -35,6 +35,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 /datum/category_item/player_setup_item/physical/body/load_character(var/savefile/S)
 	from_file(S["species"], pref.species)
+	from_file(S["b_type"], pref.b_type)
+	from_file(S["disabilities"], pref.disabilities)
+	pref.preview_icon = null
 	from_file(S["skin_tone"], pref.s_tone)
 	from_file(S["skin_base"], pref.s_base)
 	from_file(S["hair_style_name"], pref.h_style)
@@ -80,7 +83,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	if (pref.size_multiplier != 1)
 		pref.scale_effect = round(pref.size_multiplier * 100 - 100)		//So players don't have to rewrite their char sizes
 		pref.size_multiplier = initial(pref.size_multiplier)	//We don't need obsolete vars on our chars
-
+	
 	if(!pref.species || !(pref.species in global.playable_species))
 		pref.species = SPECIES_HUMAN
 
@@ -88,15 +91,17 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	pref.s_base = ""
 
+	pref.disabilities	= sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
+
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
 		pref.bgstate = "black"
 
 /datum/category_item/player_setup_item/physical/body/content(var/mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon()
-	if (pref.preview_icon) // failsafe, if the icon fails to render for whatever reason we at least have our customization options
-		user << browse_rsc(pref.preview_icon, "previewicon.png")
-
+	user << browse_rsc(pref.preview_icon, "previewicon.png")
+	
+	//HTML styling
 	. += "<style>span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}</style>"
 	. += "<hr>"
 	. += "<table><tr style='vertical-align:top; width: 100%'><td width=65%><b>Body</b> "
@@ -105,6 +110,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/speciesstring
 	var/datum/species/cspecies = global.all_species[pref.species]
+	//var/datum/species/cspecies = global.playable_species
+	var/datum/species/mob_species = all_species[pref.species]
 	speciesstring = "<b>Species:</b> <a href='?src=\ref[src];select_species=[cspecies.name]'>[cspecies.name]</a>"
 	. += speciesstring
 	. += "<br>"
@@ -118,26 +125,26 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br><br>"
 
 	. += "<br>"
-	. += "<b>Hair:</b> <a href='?src=\ref[src];cycle_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
-	if(has_flag(HAS_HAIR_COLOR))
-		. += "<a href='?src=\ref[src];hair_color=1'><span class='color_holder_box' style='background-color:[pref.hair_color]'></span></a>"
-	. += "<br>"
+	. += "<b>Hair:</b><br>"
+	. += " Style: <a href='?src=\ref[src];cycle_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
+	if(has_flag(mob_species, HAS_HAIR_COLOR))
+		. += "<a href='?src=\ref[src];hair_color=1'><span class='color_holder_box' style='background-color:[pref.hair_color]'></span></a><br>"
 
 	. += "<b>Gradient:</B><a href='?src=\ref[src];grad_style=1'>[pref.grad_style]</a>"
 	. += "<a href='?src=\ref[src];grad_color=1'><span class='color_holder_box' style='background-color:[pref.grad_color]'></span></a>"
 	. += "<br>"
 
-	. += "<b>Facial:</b> <a href='?src=\ref[src];cycle_facial_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_facial_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
-	if(has_flag(HAS_HAIR_COLOR))
-		. += "<a href='?src=\ref[src];facial_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a>"
-	. += "<br>"
+	. += "<br><b>Facial:</b><br>"
+	. += " Style: <a href='?src=\ref[src];cycle_facial_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_facial_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
+	if(has_flag(mob_species, HAS_HAIR_COLOR))
+		. += "<a href='?src=\ref[src];facial_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a><br>"
 
-	if(has_flag(HAS_EYE_COLOR))
+	if(has_flag(mob_species, HAS_EYE_COLOR))
 		. += "<b>Eyes: </b><a href='?src=\ref[src];eye_color=1'><span class='color_holder_box' style='background-color:[pref.eyes_color]'></span></a><br>"
 
-	if(has_flag(HAS_SKIN_COLOR))
+	if(has_flag(mob_species, HAS_SKIN_COLOR))
 		. += "<b>Body Color: </b><a href='?src=\ref[src];skin_color=1'><span class='color_holder_box' style='background-color:[pref.skin_color]'></span></a><br>"
-	else if(has_flag( HAS_SKIN_TONE))
+	else if(has_flag(mob_species, HAS_SKIN_TONE))
 		. += "<b>Skin Tone: </b><a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
 	
 	. += "</td><td style = 'text-align:center;' width = 35%><b>Preview</b><br>"
