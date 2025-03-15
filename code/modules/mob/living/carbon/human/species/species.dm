@@ -67,6 +67,10 @@
 	var/list/hair_styles
 	var/list/facial_hair_styles
 
+	var/list/permitted_ears  = null
+	var/list/permitted_tail  = null
+	var/list/permitted_wings = null
+
 	// Death vars.
 	var/meat_type = /obj/item/reagent_containers/food/snacks/meat/human
 	var/gibber_type = /obj/effect/gibspawner/human
@@ -422,18 +426,18 @@
 		H.stats.addPerk(perk)
 	if(H.species.reagent_tag == IS_CHTMANT)
 		H.faction = "roach"
-		H.add_language(LANGUAGE_CHTMANT)
+		H.add_language(LANGUAGE_CHTMANT)//
 	if(H.species.reagent_tag == IS_OPIFEX)
-		H.add_language(LANGUAGE_OPIFEXEE)
+		H.add_language(LANGUAGE_OPIFEXEE)//
 	if(H.species.reagent_tag == IS_KRIOSAN)
-		H.add_language(LANGUAGE_KRIOSAN)
+		H.add_language(LANGUAGE_KRIOSAN)//
 	if(H.species.reagent_tag == IS_AKULA)
-		H.add_language(LANGUAGE_AKULA)
+		H.add_language(LANGUAGE_AKULA)//
 	if(H.species.reagent_tag == IS_MARQUA)
-		H.add_language(LANGUAGE_MARQUA)
+		H.add_language(LANGUAGE_MARQUA)//
 	if(H.species.reagent_tag == IS_SYNTHETIC)
 		H.add_language(LANGUAGE_SYNTHETIC)
-	if(H.species.reagent_tag == IS_NARAMAD)
+	if(H.species.reagent_tag == IS_NARAMAD)//
 		H.add_language(LANGUAGE_MERP)
-	if(H.species.reagent_tag == IS_CINDARITE)
+	if(H.species.reagent_tag == IS_CINDARITE)//
 		H.add_language(LANGUAGE_WEH)

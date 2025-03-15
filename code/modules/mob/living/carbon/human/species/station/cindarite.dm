@@ -13,6 +13,25 @@
 	max_age = 70
 	remains_type = /obj/item/remains/human
 
+	permitted_ears  = list("Frills, Aquatic",
+		"Frills, Drake",
+		"Frills, Short",
+		"Frills, Simple",
+		"Frills, Big"
+		)
+	permitted_tail  = list("Render Tail",
+		"Snake Tail",
+		"Lizard Tail",
+		"Lizard Tail, Short",
+		"Lizard Tail, Dark Tiger"
+		)
+	permitted_wings = list("Spines, Aquatic",
+		"Spines, Long",
+		"Spines, Long Membrane",
+		"Spines, Short",
+		"Spines, Short Membrane",
+		)
+
 	darksight = 3
 
 	cold_level_1 = 285 //Default 270

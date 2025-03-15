@@ -15,6 +15,10 @@
 
 	darksight = 4 // Complex mono-eye!
 
+	permitted_ears  = list()
+	permitted_tail  = list()
+	permitted_wings = list()
+
 	base_color = "#5f92c2"
 
 	cold_level_1 = 280  //Default 270

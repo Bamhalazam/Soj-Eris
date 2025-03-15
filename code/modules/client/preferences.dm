@@ -13,6 +13,8 @@
 	var/last_id
 
 	var/save_load_cooldown
+			//Playtime recorded per department.
+	var/list/playtime = list()
 
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
@@ -32,6 +34,7 @@
 	var/savefile/loaded_character
 	var/datum/category_collection/player_setup_collection/player_setup
 	var/datum/browser/panel
+	var/categoriesChanged = "All"
 
 /datum/preferences/New(client/C)
 	if(istype(C))
@@ -164,8 +167,7 @@
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, is_preview_copy = FALSE)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
-	player_setup.sanitize_setup()
-	character.set_species(species)
+
 	var/random_first = random_first_name(gender, species)
 	var/random_last = random_last_name(gender, species)
 	var/random_full = real_first_name + " " + real_last_name
