@@ -14,10 +14,6 @@
 
 	darksight = 3
 
-	permitted_ears  = list("Naramad Ears", "Sleek Ears")
-	permitted_tail  = list("Naramad Tail", "Naramad Tail 2")
-	permitted_wings = list()
-
 	cold_level_1 = 285 //Default 270
 	cold_level_2 = 245 //Default 230
 	cold_level_3 = 215  //Default 200

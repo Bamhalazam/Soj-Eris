@@ -20,28 +20,6 @@
 	darksight = 8 //Cat eyes.
 	bump_flag = HEAVY
 
-	permitted_ears  = list("Sablekyne Large Horns",
-		"Sablekyne Curled Horns",
-		"Sablekyne Curled Horns (small)",
-		"Sablekyne Small Horns 1",
-		"Sablekyne Small Horns 2",
-		"Sablekyne Small Horns 3",
-		"Sablekyne Stabber Horns",
-		"Sablekyne Dogma Horns",
-		"Sablekyne Outstretched Horns",
-		"Sablekyne Halo Horns",
-		"Sablekyne Upward Horns",
-		"Sablekyne Great Horns",
-		"Sablekyne Bun Horns",
-		"Sabelkyne Murauder Horns",
-		"Sabelkyne Faceguard Horns",
-		"Uni-Horn",
-		"Ox Horns",
-		"Stabber Horns (Colorable)"
-		)
-	permitted_tail  = list("Sablekyne Tail")
-	permitted_wings = list()
-
 	cold_level_1 = 220 //Default 270
 	cold_level_2 = 190 //Default 230
 	cold_level_3 = 160  //Default 200

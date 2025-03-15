@@ -15,10 +15,6 @@
 
 	darksight = 2
 	bump_flag = HEAVY
-	
-	permitted_ears  = list("Sleek Ears")
-	permitted_tail  = list("Akula Tail")
-	permitted_wings = list()
 
 	cold_level_1 = 270 //Default 270
 	cold_level_2 = 240 //Default 230

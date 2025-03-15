@@ -31,5 +31,3 @@
 									SPECIES_NARAMAD)  // Restrict some styles to specific species
 	var/do_colouration = 1                        	  // Whether or not the accessory can be affected by colouration
 	var/blend = ICON_ADD
-	var/colored_layers = 1							// Whether or not the accessory can be affected by colouration.
-	var/extra_overlay								// If the second layer and up should have a different sprite.

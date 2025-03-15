@@ -15,33 +15,6 @@
 
 	darksight = 3
 
-	permitted_ears  = list("Fennec Ears",
-		"Fox Ears",
-		"Hound Ears",
-		"Jagged Ears",
-		"Kitsune Ears",
-		"Doberman Ears",
-		"Sleek Ears",
-		"Vulpkanin Ears",
-		"Wolf Ears"
-		)
-	permitted_tail  = list("Cross Fox Tail",
-		"Curly Tail",
-		"Docked Tail",
-		"Fennec Tail, Downwards",
-		"Fennec Tail, Upwards",
-		"Fennecsune Tails",
-		"Fennix Tail",
-		"Fox Tail, Downwards",
-		"Fox Tail, Upwards",
-		"Otie Tail",
-		"Vulpkanin Tail",
-		"Vulpkanin Tail 2",
-		"Vulpkanin Tail 3",
-		"Wolf Tail",
-		"Jackal Tail"
-		)
-
 	cold_level_1 = 220 //Default 270
 	cold_level_2 = 190 //Default 230
 	cold_level_3 = 160  //Default 200

@@ -15,16 +15,6 @@
 
 	darksight = 3
 
-	permitted_ears  = list()
-	permitted_tail  = list("Avian Wagtail", "Avian Fantail")
-	permitted_wings = list("Harpy Wings",
-		"Harpy Wings Two Tone",
-		"Fantail Wings",
-		"Feathered Wings, Small",
-		"Feathered Wings, Medium",
-		"Feathered Wings, Large"
-		)
-
 	cold_level_1 = 285 //Default 270
 	cold_level_2 = 245 //Default 230
 	cold_level_3 = 215  //Default 200

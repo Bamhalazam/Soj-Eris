@@ -3,30 +3,25 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 /datum/preferences
 	var/species = SPECIES_HUMAN
 
-	var/s_base = "#00ff37"						//Base skin colour
-	var/s_tone = 0								//Skin tone
-	var/b_type = "A+"
+	var/b_type = "A+"					//blood type (not-chooseable)
 
-	var/h_style = 		"Bald"				//Hair type
-	var/f_style = 		"Shaved"				//Face hair type
+	var/s_base = ""						//Base skin colour
+	var/s_tone = 0						//Skin tone
 
-	var/hair_color = 	"#000000"			//Hair color
-	var/facial_color = 	"#000000"		//Face hair color
-	var/skin_color = 	"#FFE0D0"			//Skin color
-	var/eyes_color = 	"#000000"			//Eye color
+	var/h_style = "Bald"				//Hair type
+	var/f_style = "Shaved"				//Face hair type
 
-	var/equip_preview_mob = EQUIP_PREVIEW_ALL
+	var/hair_color = "#000000"			//Hair color
+	var/facial_color = "#000000"		//Face hair color
+	var/skin_color = "#000000"			//Skin color
+	var/eyes_color = "#000000"			//Eye color
 
 	var/disabilities = 0
 
+	var/equip_preview_mob = EQUIP_PREVIEW_ALL
+
 	var/icon/bgstate = "black"
 	var/list/bgstate_options = list("steel", "dark_steel", "white_tiles", "black_tiles", "wood", "carpet", "white", "black")
-
-	var/size_multiplier = RESIZE_NORMAL
-	var/scale_effect = 0
-
-	var/grad_style = 	"None"			//Gradient style
-	var/grad_color =	"#000000"		//Gradient Color
 
 /datum/category_item/player_setup_item/physical/body
 	name = "Body"
@@ -39,15 +34,15 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	from_file(S["skin_base"], pref.s_base)
 	from_file(S["hair_style_name"], pref.h_style)
 	from_file(S["facial_style_name"], pref.f_style)
+	from_file(S["b_type"], pref.b_type)
+	from_file(S["disabilities"], pref.disabilities)
+	pref.preview_icon = null
 	from_file(S["bgstate"], pref.bgstate)
 	from_file(S["eyes_color"], pref.eyes_color)
 	from_file(S["skin_color"], pref.skin_color)
 	from_file(S["hair_color"], pref.hair_color)
 	from_file(S["facial_color"], pref.facial_color)
-	from_file(S["size_multiplier"], pref.size_multiplier)
-	from_file(S["scale_effect"], pref.scale_effect)
-	from_file(S["gradient_style"], pref.grad_style)
-	from_file(S["gradient_color"], pref.grad_color)
+
 
 /datum/category_item/player_setup_item/physical/body/save_character(var/savefile/S)
 	to_file(S["species"], pref.species)
@@ -55,38 +50,31 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	to_file(S["skin_base"], pref.s_base)
 	to_file(S["hair_style_name"],pref.h_style)
 	to_file(S["facial_style_name"],pref.f_style)
+	to_file(S["b_type"], pref.b_type)
+	to_file(S["disabilities"], pref.disabilities)
 	to_file(S["bgstate"], pref.bgstate)
 	to_file(S["eyes_color"], pref.eyes_color)
 	to_file(S["skin_color"], pref.skin_color)
 	to_file(S["hair_color"], pref.hair_color)
 	to_file(S["facial_color"], pref.facial_color)
-	to_file(S["size_multiplier"], pref.size_multiplier)
-	to_file(S["scale_effect"], pref.scale_effect)
-	to_file(S["gradient_style"], pref.grad_style)
-	to_file(S["gradient_color"], pref.grad_color)
 
 /datum/category_item/player_setup_item/physical/body/sanitize_character(var/savefile/S)
 	pref.h_style		= sanitize_inlist(pref.h_style, GLOB.hair_styles_list, initial(pref.h_style))
 	pref.f_style		= sanitize_inlist(pref.f_style, GLOB.facial_hair_styles_list, initial(pref.f_style))
-	pref.grad_style		= sanitize_inlist(pref.grad_style, hair_gradients_list, initial(pref.grad_style))
+	pref.b_type			= sanitize_text(pref.b_type, initial(pref.b_type))
 	pref.hair_color		= iscolor(pref.hair_color) ? pref.hair_color : "#000000"
 	pref.facial_color	= iscolor(pref.facial_color) ? pref.facial_color : "#000000"
-	pref.skin_color		= iscolor(pref.skin_color) ? pref.skin_color : "#FFE0D0"
+	pref.skin_color		= iscolor(pref.skin_color) ? pref.skin_color : "#000000"
 	pref.eyes_color		= iscolor(pref.eyes_color) ? pref.eyes_color : "#000000"
-	pref.grad_color		= iscolor(pref.grad_color) ? pref.grad_color : "#000000"
 
-	if(pref.size_multiplier == null || pref.size_multiplier < RESIZE_TINY || pref.size_multiplier > RESIZE_HUGE)
-		pref.size_multiplier = initial(pref.size_multiplier)
-	if (pref.size_multiplier != 1)
-		pref.scale_effect = round(pref.size_multiplier * 100 - 100)		//So players don't have to rewrite their char sizes
-		pref.size_multiplier = initial(pref.size_multiplier)	//We don't need obsolete vars on our chars
-
-	if(!pref.species || !(pref.species in global.playable_species))
+	if(!pref.species || !(pref.species in playable_species)) //Fallback to human if no other species is dictated in pref.species
 		pref.species = SPECIES_HUMAN
 
 	sanitize_integer(pref.s_tone, -185, 34, initial(pref.s_tone))
 
 	pref.s_base = ""
+
+	pref.disabilities	= sanitize_integer(pref.disabilities, 0, 65535, initial(pref.disabilities))
 
 	if(!pref.bgstate || !(pref.bgstate in pref.bgstate_options))
 		pref.bgstate = "black"
@@ -94,9 +82,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 /datum/category_item/player_setup_item/physical/body/content(var/mob/user)
 	if(!pref.preview_icon)
 		pref.update_preview_icon()
-	if (pref.preview_icon) // failsafe, if the icon fails to render for whatever reason we at least have our customization options
-		user << browse_rsc(pref.preview_icon, "previewicon.png")
-
+	user << browse_rsc(pref.preview_icon, "previewicon.png")
+	//HTML styling
 	. += "<style>span.color_holder_box{display: inline-block; width: 20px; height: 8px; border:1px solid #000; padding: 0px;}</style>"
 	. += "<hr>"
 	. += "<table><tr style='vertical-align:top; width: 100%'><td width=65%><b>Body</b> "
@@ -105,6 +92,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	var/speciesstring
 	var/datum/species/cspecies = global.all_species[pref.species]
+	//var/datum/species/cspecies = global.playable_species
+	var/datum/species/mob_species = all_species[pref.species]
+
 	speciesstring = "<b>Species:</b> <a href='?src=\ref[src];select_species=[cspecies.name]'>[cspecies.name]</a>"
 	. += speciesstring
 	. += "<br>"
@@ -117,29 +107,24 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "Needs Glasses: <a href='?src=\ref[src];disabilities=[NEARSIGHTED]'><b>[pref.disabilities & NEARSIGHTED ? "Yes" : "No"]</b></a><br><br>"
 
-	. += "<br>"
-	. += "<b>Hair:</b> <a href='?src=\ref[src];cycle_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
-	if(has_flag(HAS_HAIR_COLOR))
-		. += "<a href='?src=\ref[src];hair_color=1'><span class='color_holder_box' style='background-color:[pref.hair_color]'></span></a>"
-	. += "<br>"
+	. += "<b>Hair:</b><br>"
+	. += " Style: <a href='?src=\ref[src];cycle_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];hair_style=1'>[pref.h_style]</a>"
+	if(has_flag(mob_species, HAS_HAIR_COLOR))
+		. += "<a href='?src=\ref[src];hair_color=1'><span class='color_holder_box' style='background-color:[pref.hair_color]'></span></a><br>"
 
-	. += "<b>Gradient:</B><a href='?src=\ref[src];grad_style=1'>[pref.grad_style]</a>"
-	. += "<a href='?src=\ref[src];grad_color=1'><span class='color_holder_box' style='background-color:[pref.grad_color]'></span></a>"
-	. += "<br>"
+	. += "<br><b>Facial:</b><br>"
+	. += " Style: <a href='?src=\ref[src];cycle_facial_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_facial_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
+	if(has_flag(mob_species, HAS_HAIR_COLOR))
+		. += "<a href='?src=\ref[src];facial_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a><br>"
 
-	. += "<b>Facial:</b> <a href='?src=\ref[src];cycle_facial_hair=right'>&lt;&lt;</a><a href='?src=\ref[src];cycle_facial_hair=left'>&gt;&gt;</a><a href='?src=\ref[src];facial_style=1'>[pref.f_style]</a>"
-	if(has_flag(HAS_HAIR_COLOR))
-		. += "<a href='?src=\ref[src];facial_color=1'><span class='color_holder_box' style='background-color:[pref.facial_color]'></span></a>"
-	. += "<br>"
+	if(has_flag(mob_species, HAS_EYE_COLOR))
+		. += "<br><b>Eyes: </b>"
+		. += "<a href='?src=\ref[src];eye_color=1'><span class='color_holder_box' style='background-color:[pref.eyes_color]'></span></a><br>"
 
-	if(has_flag(HAS_EYE_COLOR))
-		. += "<b>Eyes: </b><a href='?src=\ref[src];eye_color=1'><span class='color_holder_box' style='background-color:[pref.eyes_color]'></span></a><br>"
+	if(has_flag(mob_species, HAS_SKIN_COLOR))
+		. += "<br><b>Body Color: </b>"
+		. += "<a href='?src=\ref[src];skin_color=1'><span class='color_holder_box' style='background-color:[pref.skin_color]'></span></a><br>"
 
-	if(has_flag(HAS_SKIN_COLOR))
-		. += "<b>Body Color: </b><a href='?src=\ref[src];skin_color=1'><span class='color_holder_box' style='background-color:[pref.skin_color]'></span></a><br>"
-	else if(has_flag( HAS_SKIN_TONE))
-		. += "<b>Skin Tone: </b><a href='?src=\ref[src];skin_tone=1'>[-pref.s_tone + 35]/220</a><br>"
-	
 	. += "</td><td style = 'text-align:center;' width = 35%><b>Preview</b><br>"
 	. += "<div style ='padding-bottom:-2px;' class='statusDisplay'><img src=previewicon.png width=[pref.preview_icon.Width()] height=[pref.preview_icon.Height()]></div>"
 	. += "<br><a href='?src=\ref[src];cycle_bg=1'>Cycle background</a>"
@@ -160,17 +145,13 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		hide_species = !hide_species
 		return TOPIC_REFRESH
 
-	else if(href_list["random"])
-		pref.randomize_appearance_and_body_for()
-		return TOPIC_REFRESH_UPDATE_PREVIEW
-
 	else if(href_list["select_species"])
 		var/new_species = input(user, "Choose your character's species:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.species) as null|anything in global.playable_species
 		if(new_species && CanUseTopic(user))
 			pref.species = new_species
-			pref.ears_style = "Default"
-			pref.tail_style = "Default"
-			pref.wings_style = "Default"
+		//	pref.ears_style = "Default"
+		//	pref.tail_style = "Default"
+		//	pref.wings_style = "Default"
 			pref.setup_options["Career"] = "None"
 			pref.setup_options["Homeworld"] = "None"
 			pref.setup_options["Upbringing"] = "None"
@@ -299,22 +280,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		if(new_f_style && CanUseTopic(user) && mob_species.get_facial_hair_styles(pref.gender))
 			pref.f_style = new_f_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
-	else if(href_list["scale_effect"])
-		var/new_size_mult = input(user, "Choose your character's size, ranging from -20% to +20% form normal sprite size. Note that 100% is roughly equals to 1.77 meters or 5'10.", "Set Size") as num|null
-		if (!ISINRANGE(new_size_mult,-20,20))
-			//pref.size_multiplier = 1 		Obsolete
-			pref.scale_effect = 0
-			to_chat(user, "<span class='notice'>Invalid size.</span>")
-			return TOPIC_REFRESH_UPDATE_PREVIEW
-		else if(new_size_mult == -10 || new_size_mult == 10)
-			to_chat(user, "<span class='notice'>You're trying to set character size value which will result broken sprites. Your scaling is auto adjusted.</span>")
-			if (new_size_mult == -10)
-				pref.scale_effect = -9
-			else pref.scale_effect = 9
-		else if(new_size_mult)
-		//	was pref.size_multiplier
-			pref.scale_effect = (new_size_mult)
-			return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	return ..()
 
 /datum/category_item/player_setup_item/proc/ResetAllHair()
